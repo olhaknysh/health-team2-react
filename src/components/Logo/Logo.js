@@ -6,7 +6,7 @@ export default function Logo() {
     return (
         <div className={s.logoConatiner}>
             <NavLink
-            to={paths.diary}
+            to={paths.home}
             activeClassName={s.activeNavLink}
             className={s.navLink}
             >

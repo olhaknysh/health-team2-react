@@ -2,8 +2,8 @@ import { React } from 'react';
 import { NavLink } from 'react-router-dom';
 import paths from '../../utils/routes';
 import s from './Navigation.module.scss';
-import { useSelector } from 'react-redux';
-import { authSelectors } from '../../redux/auth';
+// import { useSelector } from 'react-redux';
+// import { authSelectors } from '../../redux/auth';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 

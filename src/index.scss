@@ -1,0 +1,7 @@
+@import './fonts/fonts.scss';
+@import '../node_modules/modern-normalize/modern-normalize.css';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

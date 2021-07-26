@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { authSelectors } from '../../redux/auth';
+// import { useSelector } from 'react-redux';
+// import { authSelectors } from '../../redux/auth';
 import classNames from 'classnames';
 import Logo from '../Logo';
 import Navigation from '../Navigation';

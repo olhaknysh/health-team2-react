@@ -42,15 +42,6 @@
   }
 }
 
-// .burgerButton {
-//   margin: auto 0;
-//   display: none;
-
-//   @media screen and (max-width: 767px) {
-//     display: block;
-//   }
-// }
-
 .lines {
   display: none;
   @media screen and (max-width: 767px) {
@@ -60,7 +51,7 @@
 
 @media screen and (max-width: 767px) {
   .lines {
-    display: flex !important;
+    display: flex;
     flex-direction: column;
     max-width: 30px;
     width: 100%;

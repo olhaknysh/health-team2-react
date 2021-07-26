@@ -1,0 +1,110 @@
+.header {
+  position: relative;
+  padding-top: 82px;
+  padding-bottom: 20px;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    &::before {
+      content: '';
+      display: block;
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    align-items: center;
+  }
+}
+
+.logoAndNavContainer {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+// .burgerButton {
+//   margin: auto 0;
+//   display: none;
+
+//   @media screen and (max-width: 767px) {
+//     display: block;
+//   }
+// }
+
+.lines {
+  display: none;
+  @media screen and (max-width: 767px) {
+    margin-left: 50px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .lines {
+    display: flex !important;
+    flex-direction: column;
+    max-width: 30px;
+    width: 100%;
+  }
+  .lines .line:first-child,
+  .lines .line:nth-child(2) {
+    display: block;
+    width: 100%;
+    max-width: 30px;
+    height: 3px;
+    background: #212121;
+    border-radius: 15px;
+    transition: 0.5s;
+  }
+  .lines .line:nth-child(2) {
+    margin-top: 6px;
+  }
+  .lines .line:nth-child(3) {
+    display: block;
+    width: 100%;
+    height: 3px;
+    max-width: 30px;
+    background: #212121;
+    margin-top: 6px;
+    border-radius: 15px;
+    transition: 0.5s;
+  }
+  .lines.active {
+    z-index: 6;
+    position: relative;
+  }
+
+  .lines.active .line:first-child {
+    transition: 0.5s;
+    transform: rotate(45deg);
+  }
+  .lines.active .line:nth-child(2) {
+    transition: 0.5s;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: -6px;
+  }
+  .lines.active .line:nth-child(3) {
+    transition: 0.5s;
+    opacity: 0;
+  }
+}

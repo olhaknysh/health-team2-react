@@ -1,0 +1,111 @@
+.nav {
+  position: relative;
+  padding: 2px 0;
+  padding-left: 22px;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #e0e0e0;
+  }
+
+  @media screen and (max-width: 768px) {
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.navIsAuthenticated {
+  position: relative;
+  padding: 2px 0;
+  padding-left: 22px;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #e0e0e0;
+  }
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    height: 100vh;
+    padding: 110px 0;
+    background: #264061;
+    pointer-events: none;
+
+    &.isOpen {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 60px 0;
+  }
+}
+
+.navList {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navIsAuthenticated .navList {
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.navItem:not(:last-child) {
+  margin-right: 15px;
+}
+
+.navIsAuthenticated .navItem:not(:last-child) {
+  @media screen and (max-width: 768px) {
+    margin-right: unset;
+    margin-bottom: 20px;
+  }
+}
+
+.navLink {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #9b9faa;
+  text-decoration: none;
+}
+
+.navLink.activeNavLink {
+  color: #212121;
+}
+
+.navIsAuthenticated .navLink.activeNavLink {
+  @media screen and (max-width: 768px) {
+    color: #dadada;
+  }
+}

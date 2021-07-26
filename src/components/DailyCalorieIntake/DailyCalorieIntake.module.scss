@@ -1,3 +1,5 @@
+@import '../../utils/saas//_mixins.scss';
+
 .ButtonCloseModal {
   position: absolute;
   top: 10px;
@@ -8,3 +10,70 @@
   background-color: #fff;
   cursor: pointer;
 }
+
+.MainSectionModal {
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+}
+
+.TitleMainSection {
+  text-align: center;
+  font-size: 26px;
+  margin: 64px 125px 22px;
+  color: #212121;
+}
+
+.PharagraphCalorieCounting {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+
+  margin: 0px 180px 12px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #264061;
+
+  & > span {
+    font-size: 48px;
+  }
+}
+
+.SectionNotReccomendProduts {
+  margin: 0px 180px 40px;
+}
+
+.SectionSubtitle {
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+.ProductsList {
+  margin: 0;
+  padding-left: 17px;
+  color: #9b9faa;
+
+  & > li:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+
+.FooterModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ButtonRegistration {
+  width: 176px;
+  height: 44px;
+  font-weight: 700;
+  color: #fff;
+  background: #fc842d;
+  border: none;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+}
+
+// @include for-size (tablet) {
+//   padding-top: 37px;
+// }

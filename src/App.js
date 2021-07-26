@@ -15,7 +15,8 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage' /* webpackChunkName: "di
 
 const App = () => {
   return <>
-           <Header />
+    <Header />
+    <main>
             <Container>
 
               <Suspense fallback={<p align="center">Loading...</p>}>
@@ -47,7 +48,9 @@ const App = () => {
                 </Switch>
               </Suspense>
 
-            </Container>
+      </Container>
+      
+      </main>
          </>
 }
 

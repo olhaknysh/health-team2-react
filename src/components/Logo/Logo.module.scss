@@ -1,0 +1,70 @@
+.logoConatiner {
+  position: relative;
+  padding-right: 20px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+  }
+}
+
+.imageLogo {
+  position: relative;
+  display: block;
+  width: 170px;
+  height: 67px;
+
+  @media screen and (max-width: 768px) {
+    width: 160px;
+    height: 44px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 46px;
+    height: 44px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: -webkit-image-set(
+      url('../../utils//images/logoDesktop.png') 1x,
+      url('../../utils//images/logoDesktop2x.png') 2x
+    );
+    background-image: image-set(
+      url('../../utils//images/logoDesktop.png') 1x,
+      url('../../utils//images/logoDesktop2x.png') 2x
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    @media screen and (max-width: 768px) {
+      background-image: -webkit-image-set(
+        url('../../utils//images/logoTablet.png') 1x,
+        url('../../utils//images/logoTablet2x.png') 2x
+      );
+      background-image: image-set(
+        url('../../utils//images/logoTablet.png') 1x,
+        url('../../utils//images/logoTablet2x.png') 2x
+      );
+    }
+
+    @media screen and (max-width: 480px) {
+      background-image: -webkit-image-set(
+        url('../../utils//images/logoMobile.png') 1x,
+        url('../../utils//images/logoMobile2x.png') 2x
+      );
+      background-image: image-set(
+        url('../../utils//images/logoMobile.png') 1x,
+        url('../../utils//images/logoMobile2x.png') 2x
+      );
+    }
+  }
+}

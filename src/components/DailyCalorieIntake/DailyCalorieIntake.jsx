@@ -1,8 +1,13 @@
 import Button from '../Button';
 import { ReactComponent as CrossIcon } from '../../utils/images/icons/cross.svg';
+import { ReactComponent as ArrowIcon } from '../../utils/images/icons/arrowBack.svg';
+
+import { useMedia } from 'react-use';
 
 import styles from './DailyCalorieIntake.module.scss';
 const DailyCalorieIntake = ({ onClose }) => {
+  const isWide = useMedia('(min-width: 624px)');
+
   return (
     <section
       className={styles.MainSectionModal}
@@ -12,14 +17,26 @@ const DailyCalorieIntake = ({ onClose }) => {
       aria-describedby="not-recommended-products"
     >
       <header>
-        <Button
-          onClick={onClose}
-          className={styles.ButtonCloseModal}
-          aria-label="button-close-modal"
-        >
-          <CrossIcon width="20" height="20" aria-hidden="true" />
-        </Button>
-        <Button></Button>
+        {isWide ? (
+          <Button
+            onClick={onClose}
+            className={styles.ButtonCloseModal}
+            aria-label="button-close-modal"
+          >
+            <CrossIcon width="20" height="20" aria-hidden="true" />
+          </Button>
+        ) : (
+          <div className={styles.ButtonCloseWrapper}>
+            <Button
+              onClick={onClose}
+              className={styles.ButtonCloseModalMobile}
+              aria-label="button-close-modal"
+            >
+              <ArrowIcon width="15" height="8" aria-hidden="true" />
+            </Button>
+          </div>
+        )}
+
         <h1 className={styles.TitleMainSection} id="recommended-calorie-intake">
           Ваша рекомендуемая суточная норма калорий составляет
         </h1>
@@ -51,11 +68,3 @@ const DailyCalorieIntake = ({ onClose }) => {
 };
 
 export default DailyCalorieIntake;
-
-/* <IconButton onClick={onClose} className={styles.ButtonCloseModal}>
-        <CrossIcon width="20" height="20" />
-      </IconButton>  */
-
-// <svg width="20" height="20">
-//   <use href={`${sprite}#cross`}></use>
-// </svg>

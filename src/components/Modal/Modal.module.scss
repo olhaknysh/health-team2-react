@@ -1,0 +1,21 @@
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e4e4e4;
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  max-width: 690px;
+  min-height: 580px;
+  width: 100%;
+
+  background-color: #fff;
+  border-radius: 3px;
+}

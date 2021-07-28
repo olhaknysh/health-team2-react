@@ -1,8 +1,6 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Modal from './components/Modal';
-import Button from './components/Button';
-import DailyCalorieIntake from './components/DailyCalorieIntake';
+
 import Header from './components/Header';
 import Container from './components/common/Container';
 import PrivateRoute from './components/PrivateRoute';
@@ -26,10 +24,6 @@ const DiaryPage = lazy(() =>
 );
 
 const App = () => {
-  const [modal, showModal] = useState(false);
-  const toggleModal = () => {
-    showModal(prev => !prev);
-  };
   return (
     <>
       <Header />
@@ -72,12 +66,6 @@ const App = () => {
             </Switch>
           </Suspense>
         </Container>
-        {/* <Button onClick={toggleModal}>Открыть модалку </Button>
-        {modal && (
-          <Modal onClose={toggleModal}>
-            <DailyCalorieIntake onClose={toggleModal} />
-          </Modal>
-        )} */}
       </main>
     </>
   );

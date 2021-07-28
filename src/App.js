@@ -17,41 +17,41 @@ const App = () => {
   return <>
     <Header />
     <main>
-            <Container>
+      <Container>
 
-              <Suspense fallback={<p align="center">Loading...</p>}>
-                <Switch>
-        
-                  <Route exact path={paths.home}>
-                      <HomePage />
-                  </Route>
-                
-                    
-                  <PublicRoute path={paths.register} restricted  redirectTo={paths.register}>
-                    <RegisterPage/>
-                  </PublicRoute>
-                      
-                  <PublicRoute path={paths.login} restricted  redirectTo={paths.login}>
-                    <LoginPage/>
-                  </PublicRoute>
-        
-                    <PrivateRoute path={paths.calculator} redirectTo={paths.calculator}>
-                    <CalculatorPage/>
-                  </PrivateRoute>
-        
-                    <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
-                    <DiaryPage/>
-                  </PrivateRoute>
-                  
-                  <Redirect to="/" />
-                  
-                </Switch>
-              </Suspense>
+        <Suspense fallback={<p align="center">Loading...</p>}>
+          <Switch>
+
+            <Route exact path={paths.home}>
+              <HomePage />
+            </Route>
+
+
+            <PublicRoute path={paths.register} restricted redirectTo={paths.register}>
+              <RegisterPage />
+            </PublicRoute>
+
+            <PublicRoute path={paths.login} restricted redirectTo={paths.login}>
+              <LoginPage />
+            </PublicRoute>
+
+            <PrivateRoute path={paths.calculator} redirectTo={paths.calculator}>
+              <CalculatorPage />
+            </PrivateRoute>
+
+            <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
+              <DiaryPage />
+            </PrivateRoute>
+
+            <Redirect to="/" />
+
+          </Switch>
+        </Suspense>
 
       </Container>
-      
-      </main>
-         </>
+
+    </main>
+  </>
 }
 
 export default App;

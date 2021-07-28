@@ -1,13 +1,13 @@
 .form {
   display: flex;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 .input {
   border: none;
-  outline: none;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 19px;
+  padding-top: 19px;
 
   font-family: Verdana;
   font-style: normal;
@@ -17,27 +17,30 @@
   letter-spacing: 0.04em;
   color: #777981;
 
-  caret-color: black;
+  caret-color: #fc842d;
   cursor: pointer;
+  padding: 0 5px;
 }
 
 .input::placeholder {
   font-family: Verdana;
   font-style: normal;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 17px;
   letter-spacing: 0.04em;
   color: #9b9faa;
+
+  animation: animatedBackground 4s linear infinite;
 }
 
 .input:first-child {
-  width: 239px;
+  width: 229px;
   margin-right: 31px;
 }
 
 .input:nth-child(2) {
-  width: 105px;
+  width: 95px;
   text-align: right;
 }
 

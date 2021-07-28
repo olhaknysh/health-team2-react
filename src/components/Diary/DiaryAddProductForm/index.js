@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from './DiaryAddProductForm.module.css';
+
+import styles from './DiaryAddProductForm.module.scss';
 
 // Icon
 import icon from '../../../utils/images/diary-plus-icon.svg';

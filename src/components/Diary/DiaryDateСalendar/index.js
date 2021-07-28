@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from './DiaryDateСalendar.module.css';
+
+import styles from './DiaryDateСalendar.module.scss';
 
 // Moment
 import moment from 'moment';

@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './DiaryProductsList.module.css';
+
+import styles from './DiaryProductsList.module.scss';
 
 // Comps
-import DiaryProductsListItem from '../DiaryProductsListItem/DiaryProductsListItem';
+import DiaryProductsListItem from '../DiaryProductsListItem';
 
 const DiaryProductsList = () => {
   return (

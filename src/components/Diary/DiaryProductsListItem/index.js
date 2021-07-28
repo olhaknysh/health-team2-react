@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './DiaryProductsListItem.module.css';
+
+import styles from './DiaryProductsListItem.module.scss';
 
 // Icon
 import icon from '../../../utils/images/diary-delete-icon.svg';

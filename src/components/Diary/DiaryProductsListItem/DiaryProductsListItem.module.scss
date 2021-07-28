@@ -68,19 +68,24 @@
 
   .product {
     padding-bottom: 10px;
-    width: 127px;
+    width: 115px;
     margin-right: 10px;
   }
 
   .quantity,
   .calories {
     padding-bottom: 10px;
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .calories {
     width: 65px;
-    margin-right: 15px;
+    margin-right: 5px;
   }
 
   .delete {
-    margin-right: 12px;
+    margin-right: 6px;
   }
 
   .delete > img {

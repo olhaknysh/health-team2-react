@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './DiaryPage.module.css';
+
+import styles from './DiaryPage.module.scss';
 
 // Router
 import { NavLink } from 'react-router-dom';
@@ -8,9 +9,9 @@ import { NavLink } from 'react-router-dom';
 import icon from '../../utils/images/diary-plus-icon.svg';
 
 // Comps
-import DiaryDateСalendar from './DiaryDateСalendar/DiaryDateСalendar';
-import DiaryAddProductForm from './DiaryAddProductForm/DiaryAddProductForm';
-import DiaryProductsList from './DiaryProductsList/DiaryProductsList';
+import DiaryDateСalendar from '../../components/Diary/DiaryDateСalendar';
+import DiaryAddProductForm from '../../components/Diary/DiaryAddProductForm';
+import DiaryProductsList from '../../components/Diary/DiaryProductsList';
 
 const DiaryPage = () => {
   return (

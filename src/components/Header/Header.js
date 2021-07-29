@@ -13,7 +13,7 @@ import s from './Header.module.scss';
 export default function Header() {
 
   // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const [isOpen, setIsOpen] = useState(false);
    const lines = [s.lines]
     

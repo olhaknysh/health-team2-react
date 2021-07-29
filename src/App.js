@@ -15,9 +15,8 @@ const DiaryPage = lazy(() => import('./pages/DiaryPage' /* webpackChunkName: "di
 
 const App = () => {
   return <>
-    <Header />
+    {/* <Header /> */}
     <main>
-            <Container>
 
               <Suspense fallback={<p align="center">Loading...</p>}>
                 <Switch>
@@ -30,7 +29,7 @@ const App = () => {
                   <PublicRoute path={paths.register} restricted  redirectTo={paths.register}>
                     <RegisterPage/>
                   </PublicRoute>
-                      
+                
                   <PublicRoute path={paths.login} restricted  redirectTo={paths.login}>
                     <LoginPage/>
                   </PublicRoute>
@@ -47,8 +46,6 @@ const App = () => {
                   
                 </Switch>
               </Suspense>
-
-      </Container>
       
       </main>
          </>

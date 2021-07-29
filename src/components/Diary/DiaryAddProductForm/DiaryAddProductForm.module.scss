@@ -1,0 +1,81 @@
+.form {
+  display: flex;
+  margin-top: 40px;
+}
+
+.input {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 19px;
+  padding-top: 19px;
+
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #777981;
+
+  caret-color: #fc842d;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.input::placeholder {
+  font-family: Verdana;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+
+  animation: animatedBackground 4s linear infinite;
+}
+
+.input:first-child {
+  width: 229px;
+  margin-right: 31px;
+}
+
+.input:nth-child(2) {
+  width: 95px;
+  text-align: right;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #fc842d;
+  /* orange */
+  box-shadow: 0px 0px 10px #fc842d;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  margin-left: 48px;
+  transition: all ease-in-out 300ms;
+}
+
+.button:hover,
+.button:active {
+  background: #fd7717;
+  box-shadow: 0px 0px 20px #fd7717;
+  transition: all ease-in-out 300ms;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .form {
+    display: none;
+  }
+}

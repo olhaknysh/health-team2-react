@@ -29,12 +29,3 @@ const Modal = ({ onClose, children }) => {
 };
 
 export default Modal;
-
-// !Стейт из APP
-// const [modal, showModal] = useState(false);
-
-// const toggleModal = () => {
-//   showModal(prevState => !prevState);
-// };
-
-// !Разметка из APP

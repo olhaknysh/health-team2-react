@@ -17,7 +17,7 @@ const error = createReducer(null, {
 });
 
 
-const isAuthenticated = createReducer(false, {
+const isAuthenticated = createReducer(true, {
     [authActions.logoutSuccess]: () => false,
 });
 

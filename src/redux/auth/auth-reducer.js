@@ -21,7 +21,7 @@ const isAuthenticated = createReducer(false, {
     [authActions.logoutSuccess]: () => false,
 });
 
-const loading = createReducer(true, {
+const loading = createReducer(false, {
     [authActions.logoutRequest]: () => true,
     [authActions.logoutSuccess]: () => false,
     [authActions.logoutError]: () => false

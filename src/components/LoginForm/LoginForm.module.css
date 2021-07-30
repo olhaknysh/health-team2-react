@@ -1,5 +1,5 @@
 .container {
-  margin-top: 40px;
+  /* margin-top: 40px; */
   padding-left: 35px;
 }
 
@@ -21,7 +21,7 @@
 }
 @media screen and (min-width: 768px) {
   .container {
-    margin-top: 191px;
+    /* margin-top: 191px; */
   }
   .title {
     text-align: start;
@@ -37,7 +37,7 @@
 }
 @media screen and (min-width: 1280px) {
   .container {
-    margin-top: 213px;
+    /* margin-top: 213px; */
   }
   .title {
     margin-bottom: 70px;

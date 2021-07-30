@@ -1,20 +1,28 @@
 import React from 'react'
-
-import AuthThumb from '../../components/AuthThumb/AuthThumb';
-import Header from '../../components/Header';
+import { useMedia } from 'react-use';
+import Container from '../../components/common/Container';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import Container from '../../components/common/Container/Container';
+import s from './LoginPage.module.scss';
 
 
 const LoginPage = () => {
+
+    const isWide = useMedia('(min-width: 480px)');
+
     return (
         <>
-            <AuthThumb>
-                
-                    <Header />
-                    <LoginForm />
-               
-            </AuthThumb>
+            {isWide ?
+              <div className={s.bgContainer}>
+               <div className={s.background1}></div>
+               <div className={s.background2}></div>
+               <div className={s.background3}></div>
+               <div className={s.background4}></div>
+             </div> 
+             : ''
+           }
+            <Container>
+                <LoginForm />
+            </Container>
         </>
     );
 }

@@ -43,7 +43,7 @@
     left: 0;
     right: 0;
     opacity: 0;
-    height: 100vh;
+
     padding: 110px 0;
     background: #264061;
     pointer-events: none;
@@ -51,6 +51,7 @@
     &.isOpen {
       opacity: 1;
       pointer-events: auto;
+      height: 100vh;
     }
   }
 

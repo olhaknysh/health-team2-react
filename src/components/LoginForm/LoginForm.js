@@ -47,7 +47,7 @@ const LoginForm = () => {
                     placeholder="Пароль *"
                 />
                 <div className={styles.btnThumb}>
-                    <ButtonAuth >Вход</ButtonAuth>
+                    <ButtonAuth>Вход</ButtonAuth>
                     <Link to="/registration" className={styles.regBtn}><ButtonAuth view="btnReg">Регистрация</ButtonAuth></Link>
                     
                 </div>

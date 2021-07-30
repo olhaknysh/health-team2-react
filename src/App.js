@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from './components/Header';
+import Loader from './components/common/Loader'
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import paths from './utils/routes';
@@ -27,8 +28,7 @@ const App = () => {
     <>
       <Header />
       <main>
-    
-          <Suspense fallback={<p align="center">Loading...</p>}>
+    <Suspense fallback={<Loader />}>
             <Switch>
               <Route exact path={paths.home}>
                 <HomePage />

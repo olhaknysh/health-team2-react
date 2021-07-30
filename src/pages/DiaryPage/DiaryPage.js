@@ -9,10 +9,10 @@ import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList'
 import styles from './DiaryPage.module.scss';
 
 const DiaryPage = () => {
-  
   const isWide = useMedia('(min-width: 480px)');
   
-  return <>
+  return (
+    <>
            {isWide ?
                <div className={styles.bgContainer}>
                  <div className={styles.background}></div>
@@ -37,6 +37,7 @@ const DiaryPage = () => {
            </Container>
     
   </>
+);
 };
 
 export default DiaryPage;

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 export default function Navigation({isOpen}) {
 
   // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const navClassName = [];
 
   if (isAuthenticated) {
@@ -39,7 +39,7 @@ export default function Navigation({isOpen}) {
         </li>
         <li className={s.navItem}> 
          <NavLink
-            to={paths.diary}
+            to={paths.register}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >
@@ -50,7 +50,7 @@ export default function Navigation({isOpen}) {
             <li className={s.navItem}>
           <NavLink
             exact
-            to={paths.calculator}
+            to={paths.diary}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >
@@ -59,7 +59,7 @@ export default function Navigation({isOpen}) {
         </li>
         <li className={s.navItem}> 
          <NavLink
-            to={paths.register}
+            to={paths.calculator}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >

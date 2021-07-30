@@ -1,3 +1,5 @@
+@import '../../../utils/saas/mixins';
+
 .container {
   display: flex;
   align-items: flex-end;
@@ -5,7 +7,7 @@
 }
 
 .date {
-  font-family: Verdana;
+  // font-family: Verdana;
   font-style: normal;
   font-weight: bold;
   font-size: 34px;

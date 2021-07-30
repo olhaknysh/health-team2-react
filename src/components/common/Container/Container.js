@@ -6,7 +6,12 @@ function Container({ children }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ])
 };
+
+
 
 export default Container;

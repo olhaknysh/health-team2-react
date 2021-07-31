@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useMedia } from 'react-use';
 import Container from '../../components/common/Container';
 import Modal from '../../components/Modal';
-import Button from '../../components/Button';
 import DailyCalorieIntake from '../../components/DailyCalorieIntake';
 import CalculatorCalorieForm from '../../components/CalculatorCalorieForm';
 

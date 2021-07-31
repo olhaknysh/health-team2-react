@@ -7,8 +7,16 @@ body {
 }
 
 main {
-  padding-top: 250px;
+  @media screen and (max-width: 766px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 110px;
+  }
 
+  @media screen and (min-width: 767px) and (max-width: 1024px) {
+    padding-top: 180px;
+  }
   @media screen and (min-width: 1025px) {
     padding-top: 300px;
   }

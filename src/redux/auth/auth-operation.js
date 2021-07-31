@@ -1,7 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
 import authActions from './auth-actions';
 
-axios.defaults.baseURL = '';
+// axios.defaults.baseURL = '';
 
 const token = {
   set(token) {
@@ -11,6 +12,8 @@ const token = {
     axios.defaults.headers.common.Authorization = '';
   },
 };
+
+axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
 const register = credentials => async dispatch => {
   dispatch(authActions.registerRequest());

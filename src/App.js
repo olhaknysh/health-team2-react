@@ -28,42 +28,42 @@ const App = () => {
     <>
       <Header />
       <main>
-    <Suspense fallback={<Loader />}>
-            <Switch>
-              <Route exact path={paths.home}>
-                <HomePage />
-              </Route>
+        <Suspense fallback={<Loader />}>
+          <Switch>
+            <Route exact path={paths.home}>
+              <HomePage />
+            </Route>
 
-              <PublicRoute
-                path={paths.register}
-                restricted
-                redirectTo={paths.register}
-              >
-                <RegisterPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.register}
+              restricted
+              redirectTo={paths.register}
+            >
+              <RegisterPage />
+            </PublicRoute>
 
-              <PublicRoute
-                path={paths.login}
-                restricted
-                redirectTo={paths.login}
-              >
-                <LoginPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.login}
+              restricted
+              redirectTo={paths.login}
+            >
+              <LoginPage />
+            </PublicRoute>
 
-              <PrivateRoute
-                path={paths.calculator}
-                redirectTo={paths.calculator}
-              >
-                <CalculatorPage />
-              </PrivateRoute>
+            <PrivateRoute
+              path={paths.calculator}
+              redirectTo={paths.calculator}
+            >
+              <CalculatorPage />
+            </PrivateRoute>
 
-              <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
-                <DiaryPage />
-              </PrivateRoute>
+            <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
+              <DiaryPage />
+            </PrivateRoute>
 
-              <Redirect to="/" />
-            </Switch>
-          </Suspense>
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       </main>
     </>
   );

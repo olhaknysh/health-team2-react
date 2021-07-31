@@ -52,7 +52,7 @@ const LoginForm = () => {
               />
               <div className={styles.btnThumb}>
                 <ButtonAuth>Вход</ButtonAuth>
-                <Link to="/registration" className={styles.regBtn}>
+                <Link to="/register" className={styles.regBtn}>
                   <ButtonAuth view="btnReg">Регистрация</ButtonAuth>
                 </Link>
               </div>

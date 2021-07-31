@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from './CalculatorCalorieForm.module.css';
 
-function CalculatorCalorieForm() {
+function CalculatorCalorieForm({onClick}) {
   const handleSubmit = values => {
     values.bloodType = Number(values.bloodType);
   };
@@ -47,6 +47,8 @@ function CalculatorCalorieForm() {
         }}
         enableReinitialize
         onSubmit={values => {
+         console.log(values);
+          onClick()
           handleSubmit(values);
         }}
       >

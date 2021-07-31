@@ -2,9 +2,10 @@ import s from './HomePage.module.scss';
 import { useState } from 'react';
 import { useMedia } from 'react-use';
 import Container from '../../components/common/Container';
-// import Modal from '../../components/Modal';
-// import Button from '../../components/Button';
-// import DailyCalorieIntake from '../../components/DailyCalorieIntake';
+import Modal from '../../components/Modal';
+import Button from '../../components/Button';
+import DailyCalorieIntake from '../../components/DailyCalorieIntake';
+import CalculatorCalorieForm from '../../components/CalculatorCalorieForm';
 
 export default function HomePage() {
   const isWide = useMedia('(min-width: 768px)');
@@ -16,7 +17,6 @@ export default function HomePage() {
 
   return (
     <>
-      {' '}
       {isWide ? (
         <div className={s.bgContainer}>
           <div className={s.background1}></div>
@@ -27,16 +27,16 @@ export default function HomePage() {
       ) : (
         ''
       )}
-      <Container>Page content</Container>
+      <Container>
+        <div>
+          <CalculatorCalorieForm onClick={toggleModal} />
+          {modal && (
+            <Modal onClose={toggleModal}>
+              <DailyCalorieIntake onClose={toggleModal} />
+            </Modal>
+          )}
+        </div>
+      </Container>
     </>
   );
 }
-
-//  <Button onClick={toggleModal}>Открыть модалку</Button>;
-//  {
-//    modal && (
-//      <Modal onClose={toggleModal}>
-//        <DailyCalorieIntake onClose={toggleModal} />
-//      </Modal>
-//    );
-//  }

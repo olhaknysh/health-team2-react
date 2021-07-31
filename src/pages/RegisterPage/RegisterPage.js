@@ -5,7 +5,7 @@ import s from './RegisterPage.module.scss';
 
 export default function RegisterPage() {
     
-    const isWide = useMedia('(min-width: 480px)');
+    const isWide = useMedia('(min-width: 768px)');
     
     return (
         <>

@@ -5,8 +5,8 @@ import RightSideBar from '../../components/RightSideBar';
 
 export default function CalculatorPage() {
 
-    const isWide = useMedia('(min-width: 480px)');
-
+  const isWide = useMedia('(min-width: 768px)');
+  
     return (
         <>
             {isWide ?

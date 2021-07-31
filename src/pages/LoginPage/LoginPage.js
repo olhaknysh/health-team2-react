@@ -7,7 +7,7 @@ import s from './LoginPage.module.scss';
 
 const LoginPage = () => {
 
-    const isWide = useMedia('(min-width: 480px)');
+    const isWide = useMedia('(min-width: 768px)');
 
     return (
         <>

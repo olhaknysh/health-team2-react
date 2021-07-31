@@ -1,10 +1,11 @@
 import { useMedia } from 'react-use';
 import Container from '../../components/common/Container';
+import RegisterForm from '../../components/RegisterForm';
 import s from './RegisterPage.module.scss';
 
 export default function RegisterPage() {
     
-    const isWide = useMedia('(min-width: 480px)');
+    const isWide = useMedia('(min-width: 768px)');
     
     return (
         <>
@@ -18,7 +19,9 @@ export default function RegisterPage() {
              : ''
             }
             
-             <Container>Page content</Container>
+             <Container>
+                 <RegisterForm/>
+             </Container>
         </>
     )
 }

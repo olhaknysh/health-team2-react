@@ -1,61 +1,67 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
-
-// import authOperations from '../../redux/auth/authOperations';
-// import isLoading  from '../../redux/loading/loadingSelector';
 
 import FormControl from '../FormControl/FormControl';
 import ButtonAuth from '../ButtonAuth/ButtonAuth';
 import loginSchema from '../../utils/schemas/LoginSchema';
-import styles from "./LoginForm.module.css"
+import authOperations from '../../redux/auth/auth-operation';
 import Container from '../common/Container';
+import routes from '../../utils/routes';
 
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    return (
-      <Container>
-        <div className={styles.container}>
-            <h3 className={styles.title}>Вход</h3>
+  return (
+    <Container>
+      <div className={styles.container}>
+        <h3 className={styles.title}>Вход</h3>
 
         <Formik
-            initialValues={{
-                login: '',
-                password: '',
-            }}
-            validationSchema={loginSchema}
-            //Нужно подвязать onSubmit к redux
-            // onSubmit={login}
+          initialValues={{
+            login: '',
+            password: '',
+          }}
+          validationSchema={loginSchema}
+          onSubmit={values => {
+            dispatch(authOperations.login(values));
+          }}
         >
+          {({ values, handleChange }) => (
             <Form>
-                <FormControl
-                    label="Логин"
-                    name="login"
-                    type="text"
-                    id="login"
-                    placeholder="Логин *"
-                />
-
-                <FormControl
-                    label="Пароль"
-                    name="password"
-                    type="text"
-                    id="password"
-                    placeholder="Пароль *"
-                />
-                <div className={styles.btnThumb}>
-                    <ButtonAuth>Вход</ButtonAuth>
-                    <Link to="/registration" className={styles.regBtn}><ButtonAuth view="btnReg">Регистрация</ButtonAuth></Link>
-                    
-                </div>
+              <FormControl
+                label="Логин"
+                name="login"
+                type="text"
+                id="login"
+                placeholder="Логин *"
+                value={values.login}
+                onChange={handleChange}
+              />
+              <FormControl
+                label="Пароль"
+                name="password"
+                type="text"
+                id="password"
+                placeholder="Пароль *"
+                value={values.password}
+                onChange={handleChange}
+              />
+              <div className={styles.btnThumb}>
+                <ButtonAuth>Вход</ButtonAuth>
+                <Link to={routes.register} className={styles.regBtn}>
+                  <ButtonAuth view="btnReg">Регистрация</ButtonAuth>
+                </Link>
+              </div>
             </Form>
-            </Formik>
-            </div>
-            </Container>
-    );
+          )}
+        </Formik>
+      </div>
+    </Container>
+  );
 };
 
-export default LoginForm
+export default LoginForm;

@@ -8,11 +8,14 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 
-export default function Navigation({isOpen}) {
 
+
+export default function Navigation({ isOpen }) {
+  
   // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   const isAuthenticated = false;
   const navClassName = [];
+
 
   if (isAuthenticated) {
      navClassName.push(s.navIsAuthenticated);
@@ -24,6 +27,7 @@ export default function Navigation({isOpen}) {
   }
   
   return (
+    
     <nav className={classNames(navClassName.join(' '))} id="header_nav">
       <ul className={s.navList}>
         {!isAuthenticated ?  <>

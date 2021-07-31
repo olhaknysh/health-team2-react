@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import FormControl from '../FormControl/FormControl'
 import registerSchema from '../../utils/schemas/RegisterSchema';
 import ButtonAuth from '../ButtonAuth/ButtonAuth';
-import styles from "./RegisterForm.module.scss"
+import styles from "./RegisterForm.module.scss";
+import routes from '../../utils/routes';
 
 
 const RegisterForm = () => {
@@ -49,7 +50,7 @@ const RegisterForm = () => {
                         placeholder="Пароль"
                     />
                     <div className={styles.btnThumb}>
-                        <Link to="/login" className={styles.regBtn}><ButtonAuth view="btnReg">Вход</ButtonAuth></Link>
+                        <Link to={routes.login} className={styles.regBtn}><ButtonAuth view="btnReg">Вход</ButtonAuth></Link>
                         <ButtonAuth >Регистрация</ButtonAuth>
                     
                     </div>

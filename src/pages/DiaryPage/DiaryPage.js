@@ -9,7 +9,7 @@ import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList'
 import styles from './DiaryPage.module.scss';
 
 const DiaryPage = () => {
-  const isWide = useMedia('(min-width: 480px)');
+  const isWide = useMedia('(min-width: 768px)');
   
   return (
     <>

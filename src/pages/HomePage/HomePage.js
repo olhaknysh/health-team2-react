@@ -11,7 +11,7 @@ import Container from '../../components/common/Container';
 
 export default function HomePage() {
 
-  const isWide = useMedia('(min-width: 480px)');
+  const isWide = useMedia('(min-width: 768px)');
   
   const [modal, showModal] = useState(false);
   const toggleModal = () => {

@@ -11,6 +11,7 @@ import ButtonAuth from '../ButtonAuth/ButtonAuth';
 import loginSchema from '../../utils/schemas/LoginSchema';
 import styles from "./LoginForm.module.css"
 import Container from '../common/Container';
+import routes from '../../utils/routes';
 
 
 const LoginForm = () => {
@@ -48,7 +49,7 @@ const LoginForm = () => {
                 />
                 <div className={styles.btnThumb}>
                     <ButtonAuth>Вход</ButtonAuth>
-                    <Link to="/registration" className={styles.regBtn}><ButtonAuth view="btnReg">Регистрация</ButtonAuth></Link>
+                    <Link to={routes.register} className={styles.regBtn}><ButtonAuth view="btnReg">Регистрация</ButtonAuth></Link>
                     
                 </div>
             </Form>

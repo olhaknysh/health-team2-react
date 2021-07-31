@@ -2,7 +2,6 @@ import { useMedia } from 'react-use';
 import s from './CalculatorPage.module.scss';
 
 import RightSideBar from '../../components/RightSideBar';
-import CalculatorCalorieForm from '../../components/CalculatorCalorieForm'
 
 export default function CalculatorPage() {
 
@@ -16,13 +15,7 @@ export default function CalculatorPage() {
                 </div>
                 : ''
             }
-            <div className={s.calculatorBox}>
-                <div className={s.formBox}>
-                    <CalculatorCalorieForm />
-                </div>
-                <RightSideBar />
-
-            </div>
+            <RightSideBar />
         </>
     )
 }

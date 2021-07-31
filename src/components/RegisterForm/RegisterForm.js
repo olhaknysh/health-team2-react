@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import FormControl from '../FormControl/FormControl';
 import registerSchema from '../../utils/schemas/RegisterSchema';
 import ButtonAuth from '../ButtonAuth/ButtonAuth';
+import routes from '../../utils/routes';
 import authOperations from '../../redux/auth/auth-operation';
 
 import styles from './RegisterForm.module.scss';
@@ -57,7 +58,7 @@ const RegisterForm = () => {
               onChange={handleChange}
             />
             <div className={styles.btnThumb}>
-              <Link to="/login" className={styles.regBtn}>
+              <Link to={routes.login} className={styles.regBtn}>
                 <ButtonAuth view="btnReg">Вход</ButtonAuth>
               </Link>
               <ButtonAuth>Регистрация</ButtonAuth>
@@ -69,3 +70,4 @@ const RegisterForm = () => {
   );
 };
 export default RegisterForm;
+

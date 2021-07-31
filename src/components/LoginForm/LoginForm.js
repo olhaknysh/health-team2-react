@@ -8,6 +8,7 @@ import ButtonAuth from '../ButtonAuth/ButtonAuth';
 import loginSchema from '../../utils/schemas/LoginSchema';
 import authOperations from '../../redux/auth/auth-operation';
 import Container from '../common/Container';
+import routes from '../../utils/routes';
 
 import styles from './LoginForm.module.css';
 
@@ -40,7 +41,6 @@ const LoginForm = () => {
                 value={values.login}
                 onChange={handleChange}
               />
-
               <FormControl
                 label="Пароль"
                 name="password"
@@ -52,7 +52,7 @@ const LoginForm = () => {
               />
               <div className={styles.btnThumb}>
                 <ButtonAuth>Вход</ButtonAuth>
-                <Link to="/register" className={styles.regBtn}>
+                <Link to={routes.register} className={styles.regBtn}>
                   <ButtonAuth view="btnReg">Регистрация</ButtonAuth>
                 </Link>
               </div>

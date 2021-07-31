@@ -50,11 +50,11 @@
 
 .background3 {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 40%;
-  height: 40%;
-  background-image: url('../../utils/images/background/auth-pages/bg-auth-tablet-3.png');
+  bottom: -10%;
+  right: -12%;
+  width: 50%;
+  height: 50%;
+  background-image: url('../../utils/images/background/auth-pages/bg-auth-3.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
@@ -64,8 +64,7 @@
     right: -12%;
     width: 60%;
     height: 60%;
-    background-image: url('../../utils/images/background/auth-pages/bg-auth-3.png');
-    background-position: right;
+    background-position: right bottom;
   }
 }
 

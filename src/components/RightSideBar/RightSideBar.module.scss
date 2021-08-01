@@ -32,10 +32,7 @@
   letter-spacing: 0.04em;
 }
 
-.table {
-  width: 100%;
-}
-
+.table,
 .dietBox {
   width: 100%;
 }
@@ -78,10 +75,16 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1024px) {
   .container {
-    width: 535px;
+    width: 428px;
     padding-top: 140px;
+  }
+
+  .wrapper {
+    width: 232px;
+    flex-direction: column;
+    margin: 0;
   }
 
   .summaryBox {
@@ -91,11 +94,5 @@
 
   .dietBox {
     width: 100%;
-  }
-
-  .wrapper {
-    width: 270px;
-    flex-direction: column;
-    margin: 0;
   }
 }

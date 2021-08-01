@@ -16,8 +16,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <Container>
-      <div className={styles.container}>
+    <div className={styles.container}>
         <h3 className={styles.title}>Вход</h3>
 
         <Formik
@@ -60,7 +59,6 @@ const LoginForm = () => {
           )}
         </Formik>
       </div>
-    </Container>
   );
 };
 

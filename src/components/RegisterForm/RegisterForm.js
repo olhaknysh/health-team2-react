@@ -35,7 +35,7 @@ const RegisterForm = () => {
               name="name"
               type="text"
               id="name"
-              placeholder="Имя"
+              placeholder="Имя *"
               value={values.name}
               onChange={handleChange}
             />
@@ -44,7 +44,7 @@ const RegisterForm = () => {
               name="login"
               type="text"
               id="login"
-              placeholder="Логин"
+              placeholder="Логин *"
               value={values.login}
               onChange={handleChange}
             />
@@ -53,7 +53,7 @@ const RegisterForm = () => {
               name="password"
               type="text"
               id="password"
-              placeholder="Пароль"
+              placeholder="Пароль *"
               value={values.password}
               onChange={handleChange}
             />

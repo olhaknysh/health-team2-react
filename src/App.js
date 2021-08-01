@@ -34,32 +34,33 @@ const App = () => {
               <HomePage />
             </Route>
 
-            <PublicRoute
-              path={paths.register}
-              restricted
-              redirectTo={paths.register}
-            >
-              <RegisterPage />
-            </PublicRoute>
+              <PublicRoute
+                path={paths.register}
+                restricted
+                redirectTo={paths.diary}
+              >
+                <RegisterPage />
+              </PublicRoute>
 
-            <PublicRoute
-              path={paths.login}
-              restricted
-              redirectTo={paths.login}
-            >
-              <LoginPage />
-            </PublicRoute>
+              <PublicRoute
+                path={paths.login}
+                restricted
+                redirectTo={paths.diary}
+              >
+                <LoginPage />
+              </PublicRoute>
 
-            <PrivateRoute
-              path={paths.calculator}
-              redirectTo={paths.calculator}
-            >
-              <CalculatorPage />
-            </PrivateRoute>
+              <PrivateRoute
+                path={paths.calculator}
+                redirectTo={paths.login}
+              >
+                <CalculatorPage />
+              </PrivateRoute>
 
-            <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
-              <DiaryPage />
-            </PrivateRoute>
+              <PrivateRoute path={paths.diary} redirectTo={paths.login}>
+                <DiaryPage />
+              </PrivateRoute>
+
 
             <Redirect to="/" />
           </Switch>

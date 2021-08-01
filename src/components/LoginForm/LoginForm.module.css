@@ -36,9 +36,10 @@
     margin-left: 30px;
   }
 }
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1024px) {
   .container {
-    padding-top: 362px;
+    padding-top: 274px;
+    padding-left: 115px;
   }
   .title {
     margin-bottom: 70px;

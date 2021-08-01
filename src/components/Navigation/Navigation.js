@@ -10,14 +10,14 @@ import PropTypes from 'prop-types';
 
 
 
-export default function Navigation({ isOpen }) {
+export default function Navigation({ isOpen, isAuth }) {
   
   // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = false;
+  // const isAuthenticated = false;
   const navClassName = [];
 
 
-  if (isAuthenticated) {
+  if (isAuth) {
      navClassName.push(s.navIsAuthenticated);
      if (isOpen) {
         navClassName.push(s.isOpen);
@@ -30,7 +30,7 @@ export default function Navigation({ isOpen }) {
     
     <nav className={classNames(navClassName.join(' '))} id="header_nav">
       <ul className={s.navList}>
-        {!isAuthenticated ?  <>
+        {!isAuth ?  <>
         <li className={s.navItem}>
           <NavLink
             exact
@@ -79,5 +79,6 @@ export default function Navigation({ isOpen }) {
 
 Navigation.propTypes = {
   isOpen: PropTypes.bool,
+  isAuth: PropTypes.bool,
 }
 

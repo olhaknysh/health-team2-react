@@ -37,7 +37,7 @@ const App = () => {
               <PublicRoute
                 path={paths.register}
                 restricted
-                redirectTo={paths.register}
+                redirectTo={paths.diary}
               >
                 <RegisterPage />
               </PublicRoute>
@@ -45,19 +45,19 @@ const App = () => {
               <PublicRoute
                 path={paths.login}
                 restricted
-                redirectTo={paths.login}
+                redirectTo={paths.diary}
               >
                 <LoginPage />
               </PublicRoute>
 
               <PrivateRoute
                 path={paths.calculator}
-                redirectTo={paths.calculator}
+                redirectTo={paths.login}
               >
                 <CalculatorPage />
               </PrivateRoute>
 
-              <PrivateRoute path={paths.diary} redirectTo={paths.diary}>
+              <PrivateRoute path={paths.diary} redirectTo={paths.login}>
                 <DiaryPage />
               </PrivateRoute>
 

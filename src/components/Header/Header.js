@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { authSelectors } from '../../redux/auth';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 import classNames from 'classnames';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
@@ -25,8 +25,8 @@ export default function Header() {
       }
   });
   
-  // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = false;
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
+  // const isAuthenticated = false;
   const [isOpen, setIsOpen] = useState(false);
   const lines = [s.lines]
     
@@ -42,7 +42,7 @@ export default function Header() {
         <div className={s.container}>
           <div className={s.logoAndNavContainer}>
             <Logo />
-            {isAuthPage ? <Navigation isOpen={isOpen} /> : ''}
+            {isAuthPage ? <Navigation isOpen={isOpen} isAuth={isAuthenticated}/> : ''}
              
          
           </div>

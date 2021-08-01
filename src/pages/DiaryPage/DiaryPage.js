@@ -9,35 +9,36 @@ import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList'
 import styles from './DiaryPage.module.scss';
 
 const DiaryPage = () => {
+
   const isWide = useMedia('(min-width: 768px)');
-  
+
   return (
     <>
-           {isWide ?
-               <div className={styles.bgContainer}>
-                 <div className={styles.background}></div>
-               </div> 
-              : ''
-            }
+      {isWide ?
+        <div className={styles.bgContainer}>
+          <div className={styles.background}></div>
+        </div>
+        : ''
+      }
 
-          <Container>
-                  <div className={styles.page}>
-                  <DiaryDateСalendar />
-                  <DiaryAddProductForm />
-                  <DiaryProductsList />
-            
-                  <div className={styles.mobileLink}>
-                    <NavLink to="/add">
-                      <button type="button" className={styles.button}>
-                        <img src={icon} alt="form plus icon" />
-                      </button>
-                    </NavLink>
-                  </div>
-                </div>
-           </Container>
-    
-  </>
-);
+      <Container>
+        <div className={styles.page}>
+          <DiaryDateСalendar />
+          <DiaryAddProductForm />
+          <DiaryProductsList />
+
+          <div className={styles.mobileLink}>
+            <NavLink to="/add">
+              <button type="button" className={styles.button}>
+                <img src={icon} alt="form plus icon" />
+              </button>
+            </NavLink>
+          </div>
+        </div>
+      </Container>
+
+    </>
+  );
 };
 
 export default DiaryPage;

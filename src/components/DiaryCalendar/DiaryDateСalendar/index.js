@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { productsOperations } from '../../../redux/products'
 
 import styles from './DiaryDateСalendar.module.scss';
 
@@ -30,6 +32,13 @@ const DiaryDateСalendar = () => {
   const month = currentDate[0];
   const year = currentDate[2];
   const date = `${day}.${month}.${year}`;
+
+  const dispatch = useDispatch();
+  const dateToSideBar = '08-01-2021'; // --- TODO только для теста! удалить позже.
+  // const dateToSideBar = `${day}-${month}-${year}`; --- TODO раскомитить после теста
+  useEffect(() => {
+    dispatch(productsOperations.getProductsByDay(dateToSideBar));
+  }, [dateToSideBar, dispatch]);
 
   return (
     <React.Fragment>

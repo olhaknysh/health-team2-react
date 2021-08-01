@@ -58,8 +58,9 @@ const LoginPage = () => {
       </div> 
              : ''
            }
-            
-            <LoginForm />
+            <Container>
+                <LoginForm />
+            </Container>
         </>
     );
 }

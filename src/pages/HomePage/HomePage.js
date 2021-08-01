@@ -64,14 +64,15 @@ export default function HomePage() {
       : ''
     }
       <Container>
-        <div>
+        <div className={s.container}>
           <CalculatorCalorieForm onClick={toggleModal} />
+        </div>
           {modal && (
             <Modal onClose={toggleModal}>
               <DailyCalorieIntake onClose={toggleModal} />
             </Modal>
           )}
-        </div>
+       
       </Container>
     </>
   );

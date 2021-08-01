@@ -5,7 +5,7 @@ import Container from '../../components/common/Container';
 // import Modal from '../../components/Modal';
 // import Button from '../../components/Button';
 // import DailyCalorieIntake from '../../components/DailyCalorieIntake';
-
+import {CSSTransition} from 'react-transition-group';
 
 
 
@@ -22,10 +22,38 @@ export default function HomePage() {
   return (
     <> {isWide ?
       <div className={s.bgContainer}>
-        <div className={s.background1}></div>
-        <div className={s.background2}></div>
-        <div className={s.background3}></div>
-        <div className={s.background4}></div>
+        <CSSTransition
+              appear={true}
+              in={true}
+              timeout={500}
+              classNames="item"
+            >
+          <div className={s.background1}></div>
+        </CSSTransition>
+        <CSSTransition
+            appear={true}
+              in={true}
+              timeout={500}
+              classNames="item-2"
+            >
+          <div className={s.background2}></div>
+        </CSSTransition>
+        <CSSTransition
+              appear={true}
+              in={true}
+              timeout={500}
+              classNames="item-3"
+            >
+          <div className={s.background3}></div>
+        </CSSTransition>
+        <CSSTransition
+             appear={true}
+              in={true}
+              timeout={500}
+              classNames="item-4"
+            >
+          <div className={s.background4}></div>
+          </CSSTransition>
       </div> 
       : ''
     }

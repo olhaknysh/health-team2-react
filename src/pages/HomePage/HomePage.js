@@ -2,16 +2,14 @@ import s from './HomePage.module.scss';
 import { useState, useRef } from 'react';
 import { useMedia } from 'react-use';
 import Container from '../../components/common/Container';
-// import Modal from '../../components/Modal';
-// import Button from '../../components/Button';
-// import DailyCalorieIntake from '../../components/DailyCalorieIntake';
 import {CSSTransition} from 'react-transition-group';
-
-
+import Modal from '../../components/Modal';
+import DailyCalorieIntake from '../../components/DailyCalorieIntake';
+import CalculatorCalorieForm from '../../components/CalculatorCalorieForm';
 
 export default function HomePage() {
-
   const isWide = useMedia('(min-width: 768px)');
+
   const item1 = useRef(null)
   const item2 = useRef(null)
   const item3 = useRef(null)
@@ -21,7 +19,6 @@ export default function HomePage() {
   const toggleModal = () => {
     showModal(prev => !prev);
   };
-
 
   return (
     <> {isWide ?
@@ -66,16 +63,16 @@ export default function HomePage() {
       </div> 
       : ''
     }
-      <Container>Page content</Container>
+      <Container>
+        <div>
+          <CalculatorCalorieForm onClick={toggleModal} />
+          {modal && (
+            <Modal onClose={toggleModal}>
+              <DailyCalorieIntake onClose={toggleModal} />
+            </Modal>
+          )}
+        </div>
+      </Container>
     </>
   );
 }
-
-//  <Button onClick={toggleModal}>Открыть модалку</Button>;
-//  {
-//    modal && (
-//      <Modal onClose={toggleModal}>
-//        <DailyCalorieIntake onClose={toggleModal} />
-//      </Modal>
-//    );
-//  }

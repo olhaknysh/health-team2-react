@@ -1,22 +1,21 @@
 import { useMedia } from 'react-use';
-import Container from '../../components/common/Container';
 import s from './CalculatorPage.module.scss';
+
+import RightSideBar from '../../components/RightSideBar';
 
 export default function CalculatorPage() {
 
-    const isWide = useMedia('(min-width: 768px)');
-    
+  const isWide = useMedia('(min-width: 768px)');
+  
     return (
         <>
             {isWide ?
-               <div className={s.bgContainer}>
-                 <div className={s.background}></div>
-               </div> 
-              : ''
+                <div className={s.bgContainer}>
+                    <div className={s.background}></div>
+                </div>
+                : ''
             }
-
-           <Container>Page content</Container>
-
+            <RightSideBar />
         </>
     )
 }

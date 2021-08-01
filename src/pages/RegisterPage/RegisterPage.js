@@ -19,9 +19,9 @@ export default function RegisterPage() {
              : ''
             }
             
-             <Container>
+             {/* <Container> */}
                  <RegisterForm/>
-             </Container>
+             {/* </Container> */}
         </>
     )
 }

@@ -38,8 +38,8 @@
 }
 @media screen and (min-width: 1024px) {
   .container {
-    padding-top: 274px;
-    padding-left: 115px;
+    padding-top: 362px;
+    /* padding-left: 115px; */
   }
   .title {
     margin-bottom: 70px;

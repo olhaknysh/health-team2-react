@@ -31,6 +31,7 @@
 
 .calculatorBox {
   width: 100%;
+  margin-top: 160px;
 }
 
 .sidebarBox {
@@ -44,7 +45,7 @@
 
 @media screen and (min-width: 768px) {
   .calculatorBox {
-    margin: 0 auto;
+    margin: 180px auto 0 auto;
   }
 
   .formBox {

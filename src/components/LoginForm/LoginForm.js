@@ -9,7 +9,7 @@ import loginSchema from '../../utils/schemas/LoginSchema';
 import authOperations from '../../redux/auth/auth-operation';
 import routes from '../../utils/routes';
 
-import styles from './LoginForm.module.scss';
+import styles from './LoginForm.module.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();

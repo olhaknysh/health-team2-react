@@ -13,8 +13,9 @@ const RightSideBar = ({ date = '08-01-2021' }) => {
   const leftCalories = useSelector(productsSelectors.leftCalories);
   const dailyNormalProcent = useSelector(productsSelectors.dailyNormalProcent);
 
-  return <section className={s.container}>
-    <Container>
+  return <aside className={s.container}>
+     <div className={s.backgroundContainer}></div>
+  
       <div className={s.wrapper}>
         <div className={s.summaryBox}>
           <h2 className={s.heading}>Сводка за {date}</h2>
@@ -45,8 +46,8 @@ const RightSideBar = ({ date = '08-01-2021' }) => {
           {notAllowedProducts ? <p className={s.dietParagraph}>{notAllowedProducts.join(', ')}</p> : <p className={s.dietParagraph}>Здесь будет отображаться Ваш рацион</p>}
         </div>
       </div>
-    </Container>
-  </section>
+ 
+  </aside>
 }
 
 export default RightSideBar;

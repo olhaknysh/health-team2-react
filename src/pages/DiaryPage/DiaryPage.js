@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMedia } from 'react-use';
 
 import styles from './DiaryPage.module.scss';
 
@@ -17,23 +18,23 @@ import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList'
 import Button from '../../components/Button';
 
 const DiaryPage = () => {
-  const isWide = useMedia('(min-width: 768px)');
-  
-  return (
-    <div className={styles.page}>
-      <DiaryDateСalendar />
-      <DiaryAddProductForm />
-      <DiaryProductsList />
+    const isWide = useMedia('(min-width: 768px)');
 
-      <div className={styles.mobileLink}>
-        <NavLink to="/add">
-          <Button type="button" className={styles.button}>
-            <img src={icon} alt="form plus icon" />
-          </Button>
-        </NavLink>
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.page}>
+            <DiaryDateСalendar />
+            <DiaryAddProductForm />
+            <DiaryProductsList />
+
+            <div className={styles.mobileLink}>
+                <NavLink to="/add">
+                    <Button type="button" className={styles.button}>
+                        <img src={icon} alt="form plus icon" />
+                    </Button>
+                </NavLink>
+            </div>
+        </div>
+    );
 };
 
 export default DiaryPage;

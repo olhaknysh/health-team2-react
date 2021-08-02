@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useMedia } from 'react-use';
 import styles from './DiaryPage.module.scss';
 
 // Router

@@ -14,6 +14,12 @@ import styles from './RegisterForm.module.scss';
 const RegisterForm = () => {
   const dispatch = useDispatch();
 
+  async function registerSubmit(values) {
+    await dispatch(authOperations.register(values));
+    const { login, password } = values;
+    await dispatch(authOperations.login({ login, password }));
+  }
+
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Регистрация</h3>
@@ -25,7 +31,7 @@ const RegisterForm = () => {
         }}
         validationSchema={registerSchema}
         onSubmit={values => {
-          dispatch(authOperations.register(values));
+          registerSubmit(values);
         }}
       >
         {({ values, handleChange }) => (
@@ -70,4 +76,3 @@ const RegisterForm = () => {
   );
 };
 export default RegisterForm;
-

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import authActions from './auth-actions';
-import dailyRateActions from "../dailyRate/dailyRateActions"
+import dailyRateActions from '../dailyRate/dailyRateActions';
 
 const initialUserState = { name: null, login: null };
 
@@ -13,7 +13,6 @@ const user = createReducer(initialUserState, {
   [dailyRateActions.fetchDailyRateSuccess]: (_, { payload }) => payload,
 });
 
-
 const token = createReducer(null, {
   [authActions.loginSuccess]: (_, { payload }) => payload.token,
   [authActions.logoutSuccess]: () => null,
@@ -24,7 +23,7 @@ const error = createReducer(null, {
   [authActions.loginError]: (_, { payload }) => payload,
   [authActions.logoutError]: (_, { payload }) => payload,
   [authActions.getCurrentUserError]: (_, { payload }) => payload,
-  [dailyRateActions.fetchDailyRateSuccess]: (_, { payload }) => payload,
+  [dailyRateActions.fetchDailyRateError]: (_, { payload }) => payload,
 });
 
 const isAuthenticated = createReducer(false, {
@@ -52,7 +51,7 @@ const loading = createReducer(false, {
   [authActions.getProductsByDayRequest]: () => true,
   [authActions.getProductsByDaySuccess]: () => false,
   [authActions.getProductsByDayError]: () => false,
-})
+});
 
 export default combineReducers({
   user,

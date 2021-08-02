@@ -1,8 +1,8 @@
 import { useMedia } from 'react-use';
 import s from './CalculatorPage.module.scss';
-
 import RightSideBar from '../../components/RightSideBar';
-import CalculatorCalorieForm from '../../components/CalculatorCalorieForm'
+import CalculatorCalorieForm from '../../components/CalculatorCalorieForm';
+import Container from '../../components/common/Container';
 
 export default function CalculatorPage() {
 
@@ -16,13 +16,16 @@ export default function CalculatorPage() {
                 </div>
                 : ''
             }
-            <div className={s.calculatorBox}>
-                <div className={s.formBox}>
-                    <CalculatorCalorieForm />
+            <Container>
+                <div className={s.calculatorFlexBox}>
+                    <div className={s.calculatorCalorieFormItem}>
+                          <CalculatorCalorieForm />
+                    </div>
+                    <div className={s.RightSideBarItem}>
+                           <RightSideBar />
+                    </div>
                 </div>
-                <RightSideBar />
-
-            </div>
+           </Container>
         </>
     )
 }

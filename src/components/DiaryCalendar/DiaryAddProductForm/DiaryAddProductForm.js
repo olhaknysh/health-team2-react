@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
 import styles from './DiaryAddProductForm.module.scss';
 
 // Icon
 import icon from '../../../utils/images/diary-plus-icon.svg';
 
 // Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import calendarSelectors from '../../../redux/calendar/calendar-selectors';
+// import getProducts from '../../../redux/products/products-selectors';
 
 // axios
 import axios from 'axios';
+
+//operations
+import { productsOperations } from '../../../redux/products';
+
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
 const DiaryAddProductForm = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [productsState, setProductsState] = useState([]);
   const [title, setTitle] = useState('');
   const [weight, setWeight] = useState('');
+  const [productsState, setProductsState] = useState([]);
+
+  const dispatch = useDispatch();
 
   const date = useSelector(calendarSelectors.currentDate);
-  // console.log(date);
+
   const fetchProductsData = async value => {
     try {
       const { data } = await axios.get(`/products?search=${value}`);
@@ -27,13 +35,22 @@ const DiaryAddProductForm = () => {
     } catch (e) {}
   };
 
+  useEffect(() => {
+    fetchProductsData(title);
+    if (!title) {
+      setIsOpen(false);
+    }
+  }, [title]);
+
   const handleSubmit = async (event, values) => {
     event.preventDefault();
-    if (Object.values(values).length === 0) return;
-    console.log(values);
-
+    // перевірка, мабуть, не потрібна
+    // if (Object.values(values).length === 0) return;
     try {
-      await axios.post('/products', { ...values });
+      dispatch(productsOperations.addProducts(values));
+      setTitle('');
+      setWeight('');
+      setIsOpen(false);
     } catch (e) {
       console.log(e.message);
     }
@@ -58,7 +75,6 @@ const DiaryAddProductForm = () => {
             autoComplete="off"
             onChange={e => {
               setTitle(e.target.value);
-              fetchProductsData(e.target.value);
               setIsOpen(true);
             }}
           />

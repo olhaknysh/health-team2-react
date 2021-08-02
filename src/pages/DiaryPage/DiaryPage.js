@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useMedia } from 'react-use';
 import styles from './DiaryPage.module.scss';
 
 // Router
@@ -18,7 +18,7 @@ import Button from '../../components/Button';
 
 const DiaryPage = () => {
   const isWide = useMedia('(min-width: 768px)');
-  
+
   return (
     <div className={styles.page}>
       <DiaryDateСalendar />

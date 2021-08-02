@@ -54,7 +54,7 @@ const DailyCalorieIntake = ({ onClose }) => {
           Продукты, которые вам <br /> не рекомендуется употреблять
         </h2>
         <ol className={styles.ProductsList}>
-          {products.map(item => (
+          {products?.map(item => (
 					<li key={item}>
               <p>{item[0].toUpperCase() + item.slice(1)}</p>
 					</li>

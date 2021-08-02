@@ -3,3 +3,4 @@ const getProducts = state => state.auth.user.notAllowedProducts;
 
 // eslint-disable-next-line
 export default { getCalories, getProducts };
+

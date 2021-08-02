@@ -5,7 +5,7 @@ import Container from '../../components/common/Container';
 import {CSSTransition} from 'react-transition-group';
 import Modal from '../../components/Modal';
 import DailyCalorieIntake from '../../components/DailyCalorieIntake';
-import CalculatorCalorieForm from '../../components/CalculatorCalorieForm';
+import DailyCaloriesForm from '../../components/DailyCaloriesForm';
 
 export default function HomePage() {
   const isWide = useMedia('(min-width: 768px)');
@@ -14,7 +14,7 @@ export default function HomePage() {
   const item2 = useRef(null)
   const item3 = useRef(null)
   const item4 = useRef(null)
-  
+
   const [modal, showModal] = useState(false);
   const toggleModal = () => {
     showModal(prev => !prev);
@@ -31,7 +31,7 @@ export default function HomePage() {
               classNames="item"
             >
           <div ref={item1} className={s.background1}></div>
-           
+
         </CSSTransition>
         <CSSTransition
           nodeRef={item2}
@@ -60,18 +60,19 @@ export default function HomePage() {
             >
           <div ref={item4} className={s.background4}></div>
           </CSSTransition>
-      </div> 
+      </div>
       : ''
     }
       <Container>
-        <div>
-          <CalculatorCalorieForm onClick={toggleModal} />
+        <div className={s.container}>
+          <DailyCaloriesForm onShowModal={toggleModal} />
+        </div>
           {modal && (
             <Modal onClose={toggleModal}>
               <DailyCalorieIntake onClose={toggleModal} />
             </Modal>
           )}
-        </div>
+
       </Container>
     </>
   );

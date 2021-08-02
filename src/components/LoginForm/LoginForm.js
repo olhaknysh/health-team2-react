@@ -7,7 +7,6 @@ import FormControl from '../FormControl/FormControl';
 import ButtonAuth from '../ButtonAuth/ButtonAuth';
 import loginSchema from '../../utils/schemas/LoginSchema';
 import authOperations from '../../redux/auth/auth-operation';
-import Container from '../common/Container';
 import routes from '../../utils/routes';
 
 import styles from './LoginForm.module.css';
@@ -16,8 +15,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <Container>
-      <div className={styles.container}>
+    <div className={styles.container}>
         <h3 className={styles.title}>Вход</h3>
 
         <Formik
@@ -60,7 +58,6 @@ const LoginForm = () => {
           )}
         </Formik>
       </div>
-    </Container>
   );
 };
 

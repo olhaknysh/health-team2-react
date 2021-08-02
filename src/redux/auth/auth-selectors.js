@@ -8,11 +8,21 @@ const notAllowedProducts = state => state.auth.user.notAllowedProducts;
 
 const dailyCalories = state => state.auth.user.dailyCalories;
 
+const getUserId = state => state.auth.user.id;
+
+const getUserData = state => state.auth.user.userInfo;
+
+const token = state => state.auth.token;
+
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getIsAuthenticated,
   getUserName,
   isLoading,
   notAllowedProducts,
-  dailyCalories
+  dailyCalories,
+  getUserId,
+  getUserData,
+  token
 };

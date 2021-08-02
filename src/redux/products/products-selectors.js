@@ -1,12 +1,23 @@
+import { createSelector } from '@reduxjs/toolkit';
 const totalEatedCalories = state => state.products.productsByDay.totalCalories;
 
 const leftCalories = state => state.products.productsByDay.leftCalories;
 
-const dailyNormalProcent = state => state.products.productsByDay.dailyNormalProcent;
+const dailyNormalProcent = state =>
+  state.products.productsByDay.dailyNormalProcent;
+
+const getProducts = ({ products }) => products.addedProducts;
+
+const getProduct = id =>
+  createSelector([getProducts], products => {
+    return products.find(({ _id }) => _id === id);
+  });
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   totalEatedCalories,
   leftCalories,
-  dailyNormalProcent
+  dailyNormalProcent,
+  getProducts,
+  getProduct,
 };

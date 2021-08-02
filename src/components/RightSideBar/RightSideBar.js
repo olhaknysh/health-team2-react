@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import s from './RightSideBar.module.scss';
-import Container from '../common/Container';
 import { authSelectors } from '../../redux/auth';
 import { productsOperations, productsSelectors } from '../../redux/products';
 

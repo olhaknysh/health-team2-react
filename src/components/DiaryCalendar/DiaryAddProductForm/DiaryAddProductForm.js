@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './DiaryAddProductForm.module.scss';
 
 // Icon
@@ -19,7 +19,7 @@ const DiaryAddProductForm = () => {
   const [weight, setWeight] = useState('');
 
   const date = useSelector(calendarSelectors.currentDate);
-  console.log(date);
+  // console.log(date);
   const fetchProductsData = async value => {
     try {
       const { data } = await axios.get(`/products?search=${value}`);

@@ -100,9 +100,17 @@
   width: 176px;
   height: 44px;
   font-weight: 700;
-  color: #fff;
-  background: #fc842d;
-  border: none;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  color: #fc842d;
   border-radius: 30px;
+  border: 2px solid #fc842d;
+
+  background: #fff;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 4px 10px rgb(252 132 45 / 50%);
+    background: #fc842d;
+    color: white;
+  }
 }

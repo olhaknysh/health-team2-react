@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
+import { CSSTransition } from 'react-transition-group';
 const modalRoot = document.getElementById('root-modal');
-
 const Modal = ({ onClose, children }) => {
+  console.log(onClose);
   useEffect(() => {
     const handlekeyDown = e => {
       if (e.code === 'Escape') {
@@ -21,9 +22,11 @@ const Modal = ({ onClose, children }) => {
   };
 
   return createPortal(
-    <div onClick={handleBackdropClick} className={styles.Overlay}>
-      <div className={styles.Modal}>{children}</div>
-    </div>,
+    <CSSTransition in={onClose} timeout={5000}>
+      <div onClick={handleBackdropClick} className={styles.Overlay}>
+        <div className={styles.Modal}>{children}</div>
+      </div>
+    </CSSTransition>,
     modalRoot,
   );
 };

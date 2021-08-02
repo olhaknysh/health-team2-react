@@ -1,9 +1,9 @@
 import Button from '../Button';
 import { ReactComponent as CrossIcon } from '../../utils/images/icons/cross.svg';
 import { ReactComponent as ArrowIcon } from '../../utils/images/icons/arrowBack.svg';
-
 import { useMedia } from 'react-use';
-
+import paths from '../../utils/routes';
+import { Link } from 'react-router-dom';
 import styles from './DailyCalorieIntake.module.scss';
 const DailyCalorieIntake = ({ onClose }) => {
   const isWide = useMedia('(min-width: 624px)');
@@ -56,12 +56,14 @@ const DailyCalorieIntake = ({ onClose }) => {
         </ol>
       </section>
       <footer className={styles.FooterModal}>
-        <Button
-          className={styles.ButtonRegistration}
-          aria-label="button-registration"
-        >
-          Начать худеть
-        </Button>
+        <Link to={paths.register}>
+          <Button
+            className={styles.ButtonRegistration}
+            aria-label="button-registration"
+          >
+            Начать худеть
+          </Button>
+        </Link>
       </footer>
     </section>
   );

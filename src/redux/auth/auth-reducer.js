@@ -48,6 +48,10 @@ const loading = createReducer(false, {
   [authActions.logoutRequest]: () => true,
   [authActions.logoutSuccess]: () => false,
   [authActions.logoutError]: () => false,
+
+  [authActions.getProductsByDayRequest]: () => true,
+  [authActions.getProductsByDaySuccess]: () => false,
+  [authActions.getProductsByDayError]: () => false,
 })
 
 export default combineReducers({
@@ -55,5 +59,5 @@ export default combineReducers({
   token,
   isAuthenticated,
   error,
-  loading
+  loading,
 });

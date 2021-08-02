@@ -64,10 +64,11 @@ const RegisterForm = () => {
               onChange={handleChange}
             />
             <div className={styles.btnThumb}>
+              <ButtonAuth>Регистрация</ButtonAuth>
               <Link to={routes.login} className={styles.regBtn}>
                 <ButtonAuth view="btnReg">Вход</ButtonAuth>
               </Link>
-              <ButtonAuth>Регистрация</ButtonAuth>
+              
             </div>
           </Form>
         )}

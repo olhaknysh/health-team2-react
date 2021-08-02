@@ -13,14 +13,23 @@ import icon from '../../utils/images/diary-plus-icon.svg';
 import DiaryDateСalendar from '../../components/DiaryCalendar/DiaryDateСalendar';
 import DiaryAddProductForm from '../../components/DiaryCalendar/DiaryAddProductForm';
 import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList';
+import Container from '../../components/common/Container';
 
 // common
 import Button from '../../components/Button';
 
 const DiaryPage = () => {
-    const isWide = useMedia('(min-width: 768px)');
+  const isWide = useMedia('(min-width: 768px)');
 
     return (
+          <>
+      {isWide ?
+        <div className={styles.bgContainer}>
+          <div className={styles.background}></div>
+        </div>
+        : ''
+      }
+        <Container>
         <div className={styles.page}>
             <DiaryDateСalendar />
             <DiaryAddProductForm />
@@ -34,6 +43,8 @@ const DiaryPage = () => {
                 </NavLink>
             </div>
         </div>
+  </Container>
+  </>
     );
 };
 

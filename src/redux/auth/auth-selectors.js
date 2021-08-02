@@ -4,6 +4,10 @@ const getUserName = state => state.auth.user.name;
 
 const isLoading = state => state.auth.loading;
 
+const notAllowedProducts = state => state.auth.user.notAllowedProducts;
+
+const dailyCalories = state => state.auth.user.dailyCalories;
+
 const getUserId = state => state.auth.user.id;
 
 const getUserData = state => state.auth.user.userInfo;
@@ -16,6 +20,8 @@ export default {
   getIsAuthenticated,
   getUserName,
   isLoading,
+  notAllowedProducts,
+  dailyCalories,
   getUserId,
   getUserData,
   token

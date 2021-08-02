@@ -1,11 +1,12 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-
 import Header from './components/Header';
 import Loader from './components/common/Loader'
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import paths from './utils/routes';
+import { authOperations } from './redux/auth';
+import { useDispatch } from 'react-redux';
 
 const HomePage = lazy(() =>
   import('./pages/HomePage' /* webpackChunkName: "home-page" */),
@@ -24,6 +25,10 @@ const DiaryPage = lazy(() =>
 );
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser())
+  }, [dispatch])
   return (
     <>
       <Header />
@@ -34,32 +39,32 @@ const App = () => {
               <HomePage />
             </Route>
 
-              <PublicRoute
-                path={paths.register}
-                restricted
-                redirectTo={paths.diary}
-              >
-                <RegisterPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.register}
+              restricted
+              redirectTo={paths.diary}
+            >
+              <RegisterPage />
+            </PublicRoute>
 
-              <PublicRoute
-                path={paths.login}
-                restricted
-                redirectTo={paths.diary}
-              >
-                <LoginPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.login}
+              restricted
+              redirectTo={paths.diary}
+            >
+              <LoginPage />
+            </PublicRoute>
 
-              <PrivateRoute
-                path={paths.calculator}
-                redirectTo={paths.login}
-              >
-                <CalculatorPage />
-              </PrivateRoute>
+            <PrivateRoute
+              path={paths.calculator}
+              redirectTo={paths.login}
+            >
+              <CalculatorPage />
+            </PrivateRoute>
 
-              <PrivateRoute path={paths.diary} redirectTo={paths.login}>
-                <DiaryPage />
-              </PrivateRoute>
+            <PrivateRoute path={paths.diary} redirectTo={paths.login}>
+              <DiaryPage />
+            </PrivateRoute>
 
 
             <Redirect to="/" />

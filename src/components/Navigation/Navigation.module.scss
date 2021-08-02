@@ -14,7 +14,7 @@
     background-color: #e0e0e0;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     &::before {
       display: none;
     }
@@ -37,7 +37,7 @@
     background-color: #e0e0e0;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     position: absolute;
     top: 100%;
     left: 0;
@@ -68,7 +68,7 @@
 }
 
 .navIsAuthenticated .navList {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     flex-direction: column;
     align-items: center;
     max-width: 300px;
@@ -82,7 +82,7 @@
 }
 
 .navIsAuthenticated .navItem:not(:last-child) {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     margin-right: unset;
     margin-bottom: 20px;
   }
@@ -112,7 +112,7 @@
 }
 
 .navIsAuthenticated .navLink.activeNavLink {
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     color: #dadada;
   }
 }

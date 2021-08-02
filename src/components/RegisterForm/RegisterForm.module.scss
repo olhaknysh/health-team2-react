@@ -3,6 +3,7 @@
 }
 
 .title {
+  margin-top: 0;
   color: #fc842d;
   font-size: 14px;
   margin-bottom: 60px;
@@ -17,16 +18,15 @@
   margin-top: 60px;
 }
 .regBtn {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 @media screen and (min-width: 768px) {
   .container {
-    padding-top: 334px;
-    padding-left: 87px;
+    padding-top: 237px;
   }
   .title {
     text-align: start;
-    margin-top: 0;
+
     margin-bottom: 40px;
   }
   .btnThumb {
@@ -36,13 +36,13 @@
   .regBtn {
     margin-bottom: 0px;
 
-    margin-right: 30px;
+    margin-left: 30px;
   }
 }
 @media screen and (min-width: 1024px) {
   .container {
     padding-top: 244px;
-    padding-left: 115px;
+    padding-left: 145px;
   }
   .title {
     margin-bottom: 60px;

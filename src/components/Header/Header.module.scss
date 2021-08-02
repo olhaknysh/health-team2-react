@@ -1,12 +1,13 @@
 .header {
   position: absolute;
   top: 0;
+  display: block;
   z-index: 3;
   padding-top: 82px;
   padding-bottom: 20px;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #ffffff;
@@ -28,9 +29,16 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  max-width: 1180px;
   width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 768px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (max-width: 1079px) {
     align-items: center;
   }
 }
@@ -40,7 +48,7 @@
   align-items: flex-end;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1079px) {
     align-items: center;
     justify-content: space-between;
   }
@@ -48,12 +56,12 @@
 
 .lines {
   display: none;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1079px) {
     margin-left: 50px;
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1079px) {
   .lines {
     display: flex;
     flex-direction: column;

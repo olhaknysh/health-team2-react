@@ -1,6 +1,6 @@
 .title {
   margin: 0 0 40px 0;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -33,7 +33,7 @@
   top: -28px;
 
   padding: 0;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.21;
@@ -81,7 +81,7 @@
   background-color: #fc842d;
   color: #ffffff;
   font-weight: 700;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.21;
   text-align: center;
@@ -112,7 +112,7 @@
   left: 0;
   top: -20px;
   padding: 0;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.21;

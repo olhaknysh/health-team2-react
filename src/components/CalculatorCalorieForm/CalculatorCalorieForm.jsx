@@ -1,12 +1,19 @@
 import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from './CalculatorCalorieForm.module.css';
+import dailyRateOperations from '../../redux/dailyRate/dailyRateOperations';
+import authSelectors from '../../redux/auth/auth-selectors';
 
-function CalculatorCalorieForm({onClick}) {
+
+function CalculatorCalorieForm() {
+  const dispatch = useDispatch();
+  const userId = useSelector(authSelectors.getUserId);
+  const userData = useSelector(authSelectors.getUserData);
   const handleSubmit = values => {
-    values.bloodType = Number(values.bloodType);
+    values.groupBlood = Number(values.groupBlood);
+    dispatch(dailyRateOperations.onFetchDailyRatesAuthorised(values, userId));
   };
   const DisplayingErrorMessagesSchema = Yup.object().shape({
     height: Yup.number()
@@ -17,21 +24,21 @@ function CalculatorCalorieForm({onClick}) {
       .min(12, 'Минимум 12 лет')
       .max(100, 'Максимум 100 лет')
       .required('Обязательно'),
-    weight: Yup.number()
+    currentWeight: Yup.number()
       .min(40, 'Минимальный вес 40 кг')
       .max(200, 'Максимальный вес 200 кг')
       .required('Обязательно'),
-    desiredWeight: Yup.number()
+    desireWeight: Yup.number()
       .min(40, 'Минимальный вес 40 кг')
       .max(150, 'Максимальный вес 150 кг')
       .required('Обязательно')
-      .when('weight', (weight, schema) => {
+      .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
-          test: desiredWeight => !!weight && desiredWeight < weight,
+          test: desireWeight => !!currentWeight && desireWeight < currentWeight,
           message: 'Желаемый вес должен быть меньше текущего',
         });
       }),
-    bloodType: Yup.number().required('Обязательно'),
+    groupBlood: Yup.number().required('Обязательно'),
   });
 
   return (
@@ -39,16 +46,16 @@ function CalculatorCalorieForm({onClick}) {
       <Formik
         validationSchema={DisplayingErrorMessagesSchema}
         initialValues={{
-          height: '',
-          age: '',
-          weight: '',
-          desiredWeight: '',
-          bloodType: '',
+          height: userData && userData.height ? userData.height : '',
+          age: userData && userData.age ? userData.age : '',
+          currentWeight: userData && userData.weight ? userData.currentWeight : '',
+          desireWeight:
+            userData && userData.desireWeight ? userData.desireWeight : '',
+          groupBlood:
+            userData && userData.groupBlood ? userData.groupBlood.toString() : '',
         }}
         enableReinitialize
         onSubmit={values => {
-         console.log(values);
-          onClick()
           handleSubmit(values);
         }}
       >
@@ -110,9 +117,9 @@ function CalculatorCalorieForm({onClick}) {
                   <Field
                     placeholder=" "
                     className={`${styles.input} ${
-                      touched.weight && errors.weight ? styles.errorInput : ''
+                      touched.currentWeight && errors.currentWeight ? styles.errorInput : ''
                     }`}
-                    name="weight"
+                    name="currentWeight"
                     type="number"
                     min="40"
                     max="200"
@@ -120,15 +127,15 @@ function CalculatorCalorieForm({onClick}) {
                   />
                   <p
                     className={`${styles.labelValue} ${
-                      touched.weight && errors.weight
+                      touched.currentWeight && errors.currentWeight
                         ? styles.errorLabelValue
                         : ''
                     }`}
                   >
                     Текущий вес*
                   </p>
-                  {touched.weight && errors.weight && (
-                    <div className={styles.error}>{errors.weight}</div>
+                  {touched.currentWeight && errors.currentWeight && (
+                    <div className={styles.error}>{errors.currentWeight}</div>
                   )}
                 </label>
               </div>
@@ -137,11 +144,11 @@ function CalculatorCalorieForm({onClick}) {
                   <Field
                     placeholder=" "
                     className={`${styles.input} ${
-                      touched.desiredWeight && errors.desiredWeight
+                      touched.desireWeight && errors.desireWeight
                         ? styles.errorInput
                         : ''
                     }`}
-                    name="desiredWeight"
+                    name="desireWeight"
                     type="number"
                     min="40"
                     max="150"
@@ -149,44 +156,44 @@ function CalculatorCalorieForm({onClick}) {
                   />
                   <p
                     className={`${styles.labelValue} ${
-                      touched.desiredWeight && errors.desiredWeight
+                      touched.desireWeight && errors.desireWeight
                         ? styles.errorLabelValue
                         : ''
                     }`}
                   >
                     Желаемый вес*
                   </p>
-                  {touched.desiredWeight && errors.desiredWeight && (
-                    <div className={styles.error}>{errors.desiredWeight}</div>
+                  {touched.desireWeight && errors.desireWeight && (
+                    <div className={styles.error}>{errors.desireWeight}</div>
                   )}
                 </label>
                 <div className={styles.radioGroupContainer}>
                   <p className={styles.radioTitle}>Группа крови*</p>
-                  {touched.bloodType && errors.bloodType && (
-                    <div className={styles.errorRadio}>{errors.bloodType}</div>
+                  {touched.groupBlood && errors.groupBlood && (
+                    <div className={styles.errorRadio}>{errors.groupBlood}</div>
                   )}
                   <div className={styles.radioWrapper} role="group">
-                    <Field id="first" type="radio" name="bloodType" value="1" />
+                    <Field id="first" type="radio" name="groupBlood" value="1" />
                     <label htmlFor="first" className={styles.radioLabel}>
                       1
                     </label>
                     <Field
                       id="second"
                       type="radio"
-                      name="bloodType"
+                      name="groupBlood"
                       value="2"
                     />
                     <label htmlFor="second" className={styles.radioLabel}>
                       2
                     </label>
-                    <Field id="third" type="radio" name="bloodType" value="3" />
+                    <Field id="third" type="radio" name="groupBlood" value="3" />
                     <label htmlFor="third" className={styles.radioLabel}>
                       3
                     </label>
                     <Field
                       id="fourth"
                       type="radio"
-                      name="bloodType"
+                      name="groupBlood"
                       value="4"
                     />
                     <label htmlFor="fourth" className={styles.radioLabel}>

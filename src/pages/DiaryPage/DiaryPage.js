@@ -47,6 +47,7 @@ const DiaryPage = () => {
   </Container>
   </>
     );
+
 };
 
 export default DiaryPage;

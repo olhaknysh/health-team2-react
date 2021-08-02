@@ -6,7 +6,6 @@ import icon from '../../../utils/images/diary-plus-icon.svg';
 
 // Redux
 import { useSelector } from 'react-redux';
-import authSelectors from '../../../redux/auth/auth-selectors';
 import calendarSelectors from '../../../redux/calendar/calendar-selectors';
 
 // axios
@@ -14,21 +13,16 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
 const DiaryAddProductForm = () => {
-  const userToken = useSelector(authSelectors.token);
   const [isOpen, setIsOpen] = useState(false);
   const [productsState, setProductsState] = useState([]);
   const [title, setTitle] = useState('');
   const [weight, setWeight] = useState('');
 
   const date = useSelector(calendarSelectors.currentDate);
-
+  console.log(date);
   const fetchProductsData = async value => {
     try {
-      const { data } = await axios.get(`/products?search=${value}`, {
-        headers: {
-          authorization: `Bearer ${userToken}`,
-        },
-      });
+      const { data } = await axios.get(`/products?search=${value}`);
       setProductsState(data.products);
     } catch (e) {}
   };
@@ -39,12 +33,7 @@ const DiaryAddProductForm = () => {
     console.log(values);
 
     try {
-      await axios.post('/products', {
-        headers: {
-          authorization: `Bearer ${userToken}`,
-        },
-        data: values,
-      });
+      await axios.post('/products', { ...values });
     } catch (e) {
       console.log(e.message);
     }

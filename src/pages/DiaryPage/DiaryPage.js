@@ -19,6 +19,7 @@ import Container from '../../components/common/Container';
 import Button from '../../components/Button';
 
 const DiaryPage = () => {
+
   const isWide = useMedia('(min-width: 768px)');
 
     return (

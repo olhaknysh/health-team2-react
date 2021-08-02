@@ -7,7 +7,7 @@ import FormControl from '../FormControl/FormControl';
 import ButtonAuth from '../ButtonAuth/ButtonAuth';
 import loginSchema from '../../utils/schemas/LoginSchema';
 import authOperations from '../../redux/auth/auth-operation';
-import Container from '../common/Container';
+import routes from '../../utils/routes';
 
 import styles from './LoginForm.module.css';
 
@@ -15,8 +15,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   return (
-    <Container>
-      <div className={styles.container}>
+    <div className={styles.container}>
         <h3 className={styles.title}>Вход</h3>
 
         <Formik
@@ -40,7 +39,6 @@ const LoginForm = () => {
                 value={values.login}
                 onChange={handleChange}
               />
-
               <FormControl
                 label="Пароль"
                 name="password"
@@ -52,7 +50,7 @@ const LoginForm = () => {
               />
               <div className={styles.btnThumb}>
                 <ButtonAuth>Вход</ButtonAuth>
-                <Link to="/register" className={styles.regBtn}>
+                <Link to={routes.register} className={styles.regBtn}>
                   <ButtonAuth view="btnReg">Регистрация</ButtonAuth>
                 </Link>
               </div>
@@ -60,7 +58,6 @@ const LoginForm = () => {
           )}
         </Formik>
       </div>
-    </Container>
   );
 };
 

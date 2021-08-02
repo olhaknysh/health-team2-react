@@ -1,0 +1,98 @@
+%lightText {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.container {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 40px 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 290px;
+}
+
+.summaryBox {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.heading {
+  color: #212121;
+  margin: 0 0 20px;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+}
+
+.table,
+.dietBox {
+  width: 100%;
+}
+
+.tableBody {
+  @extend %lightText;
+}
+
+.tableBody td:nth-child(2n) {
+  text-align: right;
+}
+
+.dietParagraph {
+  margin: 0;
+  @extend %lightText;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding: 90px 75px;
+  }
+
+  .wrapper {
+    width: 588px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summaryBox {
+    width: 45%;
+    margin-bottom: 0;
+  }
+
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  .dietBox {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 428px;
+    padding-top: 140px;
+  }
+
+  .wrapper {
+    width: 232px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .summaryBox {
+    width: 100%;
+    margin-bottom: 60px;
+  }
+
+  .dietBox {
+    width: 100%;
+  }
+}

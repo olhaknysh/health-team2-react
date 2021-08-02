@@ -1,21 +1,33 @@
 
-import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { authSelectors } from '../../redux/auth';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
 import classNames from 'classnames';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
 import UserInfo from '../UserInfo';
-import Container from '../common/Container';
 import s from './Header.module.scss';
+import { useLocation } from "react-router-dom";
+import routes from '../../utils/routes';
 
 
 export default function Header() {
+  let location = useLocation();
+  const [isAuthPage, setIsAuthPage] = useState();
 
-  // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = false;
+   useEffect(() => {
+     if (location.pathname.indexOf(routes.register) !== -1
+       || location.pathname.indexOf(routes.login) !== -1) {
+       setIsAuthPage(false)
+     } else {
+        setIsAuthPage(true)
+      }
+  }, [location]);
+  
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
+  // const isAuthenticated = false;
   const [isOpen, setIsOpen] = useState(false);
-   const lines = [s.lines]
+  const lines = [s.lines]
     
     if (isOpen) {
         lines.push(s.active);
@@ -25,11 +37,12 @@ export default function Header() {
   
   return (
     <header className={s.header}>
-      <Container>
         <div className={s.container}>
           <div className={s.logoAndNavContainer}>
-            <Logo/>
-            <Navigation isOpen={isOpen} />
+            <Logo />
+            {isAuthPage ? <Navigation isOpen={isOpen} isAuth={isAuthenticated}/> : ''}
+             
+         
           </div>
           {isAuthenticated &&
             <>
@@ -42,7 +55,6 @@ export default function Header() {
               </div>
             </>}
         </div>
-      </Container>
     </header>
   )
 };

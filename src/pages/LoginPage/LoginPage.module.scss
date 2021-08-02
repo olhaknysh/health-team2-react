@@ -12,7 +12,7 @@
   position: absolute;
   bottom: 0%;
   right: 0;
-  width: 50%;
+  width: 70%;
   height: 100%;
   background-image: url('../../utils/images/background/auth-pages/bg-auth-tablet-1.png');
   background-repeat: no-repeat;
@@ -31,8 +31,8 @@
 
 .background2 {
   position: absolute;
-  top: 35%;
-  right: -9%;
+  top: 42%;
+  right: -5%;
   width: 35%;
   height: 35%;
   background-image: url('../../utils/images/background/auth-pages/bg-auth-2.png');
@@ -50,11 +50,11 @@
 
 .background3 {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 40%;
-  height: 40%;
-  background-image: url('../../utils/images/background/auth-pages/bg-auth-tablet-3.png');
+  bottom: -20%;
+  right: -17%;
+  width: 70%;
+  height: 70%;
+  background-image: url('../../utils/images/background/auth-pages/bg-auth-3.png');
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
@@ -64,8 +64,7 @@
     right: -12%;
     width: 60%;
     height: 60%;
-    background-image: url('../../utils/images/background/auth-pages/bg-auth-3.png');
-    background-position: right;
+    background-position: right bottom;
   }
 }
 

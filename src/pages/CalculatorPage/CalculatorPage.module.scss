@@ -28,3 +28,43 @@
     background-image: url('../../utils/images/background/user-pages/bg-user-desktop.png');
   }
 }
+
+.calculatorBox {
+  width: 100%;
+  margin-top: 160px;
+}
+
+.sidebarBox {
+}
+
+.formBox {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 60px;
+}
+
+@media screen and (min-width: 768px) {
+  .calculatorBox {
+    margin: 180px auto 0 auto;
+  }
+
+  .formBox {
+    padding: 100px 0 74px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .calculatorBox {
+    display: flex;
+    justify-content: center;
+  }
+
+  .formBox {
+    width: 596px;
+    padding: 110px;
+  }
+
+  .sidebarBox {
+    width: 428px;
+  }
+}

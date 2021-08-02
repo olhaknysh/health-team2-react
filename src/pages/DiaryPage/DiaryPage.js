@@ -17,8 +17,8 @@ import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList'
 import Button from '../../components/Button';
 
 const DiaryPage = () => {
-  const isWide = useMedia('(min-width: 768px)');
-  
+  // const isWide = useMedia('(min-width: 768px)');
+
   return (
     <div className={styles.page}>
       <DiaryDateСalendar />

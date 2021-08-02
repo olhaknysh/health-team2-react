@@ -6,17 +6,6 @@ import { authSelectors } from '../../redux/auth';
 import { productsOperations, productsSelectors } from '../../redux/products';
 
 const RightSideBar = ({ date = '08-01-2021' }) => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(productsOperations.getProductsByDay(date));
-  // }, [date, dispatch]);
-
-  // const totalCalories = state => state.products.productsByDay.totalCalories;
-  // const totalCalories = 1
-  // const leftCalories = 1;
-  // const dailyNormalProcent = 2;
-
   const notAllowedProducts = useSelector(authSelectors.notAllowedProducts);
   const dailyCalories = useSelector(authSelectors.dailyCalories);
 

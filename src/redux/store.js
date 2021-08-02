@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
 import { calendarReducer } from './calendar';
 
+
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {

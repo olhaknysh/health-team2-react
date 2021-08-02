@@ -1,6 +1,6 @@
 .title {
   margin-bottom: 40px;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
@@ -8,9 +8,9 @@
   color: #212121;
 }
 
-.form {
+/* .form {
   width: 240px;
-}
+} */
 .inputWrapper {
   margin-bottom: 40px;
 }
@@ -35,7 +35,7 @@
   top: -28px;
 
   padding: 0;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.21;
@@ -62,7 +62,7 @@
   background-color: #fc842d;
   color: #ffffff;
   font-weight: 700;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 1.21;
   text-align: center;
@@ -95,7 +95,7 @@
   left: 0;
   top: -20px;
   padding: 0;
-  font-family: Verdana;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 14px;
   line-height: 1.21;

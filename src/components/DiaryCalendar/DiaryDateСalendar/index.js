@@ -34,8 +34,8 @@ const DiaryDateСalendar = () => {
   const date = `${day}.${month}.${year}`;
 
   const dispatch = useDispatch();
-  const dateToSideBar = '08-01-2021'; // --- TODO только для теста! удалить позже.
-  // const dateToSideBar = `${day}-${month}-${year}`; --- TODO раскомитить после теста
+  // const dateToSideBar = '08-01-2021'; // --- TODO только для теста! удалить позже.
+  const dateToSideBar = `${day}-${month}-${year}`; // --- TODO раскомитить после теста
   useEffect(() => {
     dispatch(productsOperations.getProductsByDay(dateToSideBar));
   }, [dateToSideBar, dispatch]);

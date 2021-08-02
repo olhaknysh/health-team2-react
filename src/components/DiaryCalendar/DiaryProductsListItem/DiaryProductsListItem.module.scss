@@ -64,6 +64,10 @@
 }
 
 @media (max-width: 767px) {
+  .item {
+    justify-content: space-between;
+    align-items: stretch;
+  }
   .item:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -87,7 +91,7 @@
   }
 
   .delete {
-    margin-right: 6px;
+    margin-right: 0;
   }
 
   .delete > img {
@@ -97,5 +101,19 @@
 
   .cal {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .quantity,
+  .calories {
+    width: 15%;
+  }
+
+  .product {
+    width: 40%;
+  }
+  .calories {
+    margin-right: 12px;
   }
 }

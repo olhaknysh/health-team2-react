@@ -12,8 +12,7 @@ import authOperations from '../../redux/auth/auth-operation';
 import styles from './RegisterForm.module.scss';
 
 const RegisterForm = () => {
-  const dispatch = useDispatch();
-
+    const dispatch = useDispatch();
   return (
     <div className={styles.container}>
       <h3 className={styles.title}>Регистрация</h3>
@@ -58,10 +57,11 @@ const RegisterForm = () => {
               onChange={handleChange}
             />
             <div className={styles.btnThumb}>
+              <ButtonAuth>Регистрация</ButtonAuth>
               <Link to={routes.login} className={styles.regBtn}>
                 <ButtonAuth view="btnReg">Вход</ButtonAuth>
               </Link>
-              <ButtonAuth>Регистрация</ButtonAuth>
+              
             </div>
           </Form>
         )}

@@ -27,8 +27,8 @@ const DiaryPage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-  dispatch(authOperations.getCurrentUser())
-}, [dispatch])
+    dispatch(authOperations.getCurrentUser())
+  }, [dispatch])
   return (
     <>
       <Header />
@@ -39,32 +39,32 @@ const App = () => {
               <HomePage />
             </Route>
 
-              <PublicRoute
-                path={paths.register}
-                restricted
-                redirectTo={paths.diary}
-              >
-                <RegisterPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.register}
+              restricted
+              redirectTo={paths.diary}
+            >
+              <RegisterPage />
+            </PublicRoute>
 
-              <PublicRoute
-                path={paths.login}
-                restricted
-                redirectTo={paths.diary}
-              >
-                <LoginPage />
-              </PublicRoute>
+            <PublicRoute
+              path={paths.login}
+              restricted
+              redirectTo={paths.diary}
+            >
+              <LoginPage />
+            </PublicRoute>
 
-              <PrivateRoute
-                path={paths.calculator}
-                redirectTo={paths.login}
-              >
-                <CalculatorPage />
-              </PrivateRoute>
+            <PrivateRoute
+              path={paths.calculator}
+              redirectTo={paths.login}
+            >
+              <CalculatorPage />
+            </PrivateRoute>
 
-              <PrivateRoute path={paths.diary} redirectTo={paths.login}>
-                <DiaryPage />
-              </PrivateRoute>
+            <PrivateRoute path={paths.diary} redirectTo={paths.login}>
+              <DiaryPage />
+            </PrivateRoute>
 
 
             <Redirect to="/" />

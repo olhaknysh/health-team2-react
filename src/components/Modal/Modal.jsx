@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Modal.module.scss';
 const modalRoot = document.getElementById('root-modal');
-
 const Modal = ({ onClose, children }) => {
   useEffect(() => {
     const handlekeyDown = e => {

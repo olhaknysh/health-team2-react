@@ -1,12 +1,15 @@
 import Button from '../Button';
+import { Link } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
+
 import { ReactComponent as CrossIcon } from '../../utils/images/icons/cross.svg';
 import { ReactComponent as ArrowIcon } from '../../utils/images/icons/arrowBack.svg';
 
-import dailyRateSelector from "../../redux/dailyRate/dailyRateSelector";
-import { useMedia } from 'react-use';
-import {  useSelector } from 'react-redux';
-
 import styles from './DailyCalorieIntake.module.scss';
+import paths from '../../utils/routes';
+import dailyRateSelector from "../../redux/dailyRate/dailyRateSelector";
+
 const DailyCalorieIntake = ({ onClose }) => {
   const isWide = useMedia('(min-width: 624px)');
 
@@ -62,12 +65,14 @@ const DailyCalorieIntake = ({ onClose }) => {
         </ol>
       </section>
       <footer className={styles.FooterModal}>
-        <Button
-          className={styles.ButtonRegistration}
-          aria-label="button-registration"
-        >
-          Начать худеть
-        </Button>
+        <Link to={paths.register}>
+          <Button
+            className={styles.ButtonRegistration}
+            aria-label="button-registration"
+          >
+            Начать худеть
+          </Button>
+        </Link>
       </footer>
     </section>
   );

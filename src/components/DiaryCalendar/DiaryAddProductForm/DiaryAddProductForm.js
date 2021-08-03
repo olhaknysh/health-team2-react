@@ -28,7 +28,7 @@ const DiaryAddProductForm = () => {
     try {
       const { data } = await axios.get(`/products?search=${value}`);
       setProductsState(data.products);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   useEffect(() => {
@@ -43,11 +43,13 @@ const DiaryAddProductForm = () => {
     event.preventDefault();
 
     try {
-      dispatch(productsOperations.addProducts(values));
+      dispatch(productsOperations.addProducts(values)).then(() => {
+        dispatch(productsOperations.getProductsByDay(date))
+      });
       setTitle('');
       setWeight('');
       setIsOpen(false);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const handleTitleChange = e => {

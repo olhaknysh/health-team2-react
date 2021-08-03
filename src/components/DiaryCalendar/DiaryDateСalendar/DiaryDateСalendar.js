@@ -41,7 +41,7 @@ const DiaryDateСalendar = () => {
     try {
       dispatch(calendarOperations.addCurrentDate(date));
       dispatch(productsOperations.getProductsByDay(date));
-    } catch (e) {}
+    } catch (e) { }
   };
 
   return (

@@ -30,7 +30,7 @@
 .labelValue {
   position: absolute;
   left: 0;
-  top: -28px;
+  top: -10px;
 
   padding: 0;
   font-family: 'Roboto', sans-serif;
@@ -40,20 +40,18 @@
   letter-spacing: 0.04em;
   color: #9b9faa;
 
-  transition: 0.3s;
+  transition: all 300ms cubic-bezier(.57,.21,.69,1.25);
 }
 
-.input:not(:placeholder-shown) ~ .labelValue {
-  top: -30px;
-  font-size: 12px;
+.input:not(:placeholder-shown) ~ .labelValue,
+.input:focus ~ .labelValue {
+  transform: translateY(-20px);
 }
 .errorInput {
   background-color: #e1161613;
   border-bottom: 1px solid #e11616;
 }
-/* .errorLabelValue {
-  color: #e11616;
-} */
+
 .error {
   width: 300px;
   position: absolute;

@@ -32,12 +32,12 @@ const DiaryAddProductForm = () => {
       const { data } = await axios.get(
         `/products?search=${value}&page=${currentPage}`,
       );
-      setProductsState(prev => [...data.products]);
+      setProductsState([ ...data.products]);
     } catch (e) {}
   };
 
   const productSearch = useCallback(
-    _.debounce(query => fetchProductsData(query, currentPage), 500),
+    _.debounce(query => fetchProductsData(query, currentPage), 300),
     [],
   );
 

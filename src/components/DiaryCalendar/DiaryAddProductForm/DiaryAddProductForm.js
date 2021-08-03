@@ -42,6 +42,11 @@ const DiaryAddProductForm = () => {
     }
     fetchProductsData(query, currentPage);
   }, [query, currentPage]);
+  
+    const handleAddProducts = async (values) => {
+        await dispatch(productsOperations.addProducts(values));
+        await dispatch(productsOperations.getProductsByDay(date));
+    }
 
   const updatePage = () => {
     setCurrentPage(prevPage => prevPage + 1);
@@ -50,7 +55,7 @@ const DiaryAddProductForm = () => {
     event.preventDefault();
 
     try {
-      dispatch(productsOperations.addProducts(values));
+       handleAddProducts(values);
       setTitle('');
       setWeight('');
       setIsOpen(false);

@@ -1,4 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import _ from 'lodash';
 import styles from './DiaryAddProductForm.module.scss';
 
 import icon from '../../../utils/images/diary-plus-icon.svg';
@@ -19,48 +20,92 @@ const DiaryAddProductForm = () => {
   const [query, setQuery] = useState('');
   const [productsState, setProductsState] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [element, setElement] = useState(null);
-  // const observer = useRef(new IntersectionObserver(() => {}, {}));
+  const [isLoading, setIsLoading] = useState(false);
+  const [element, setElement] = useState(null);
+  const [more, setMore] = useState(true);
+
   const dispatch = useDispatch();
 
   const date = useSelector(calendarSelectors.currentDate);
   // const isLoading = useSelector(calendarSelectors.isLoading);
 
+  const productSearch = useCallback(
+    _.debounce(
+      (query, currentPage) => fetchProductsData(query, currentPage),
+      300,
+    ),
+    [],
+  );
+
   const fetchProductsData = async (value, currentPage) => {
+    setIsLoading(true);
     try {
       const { data } = await axios.get(
         `/products?search=${value}&page=${currentPage}`,
       );
-      setProductsState(prev => [...prev, ...data.products]);
-    } catch (e) {}
+      setProductsState(prevState => [...prevState, ...data.products]);
+    } catch (e) {
+      setMore(false); // ВИПРАВИТИ
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  const updatePage = useCallback(() => {
+    setCurrentPage(prevPage => prevPage + 1);
+  }, [setCurrentPage]);
 
   useEffect(() => {
     if (!query) {
       setIsOpen(false);
       return;
     }
-    fetchProductsData(query, currentPage);
-  }, [query, currentPage]);
-  
-    const handleAddProducts = async (values) => {
-        await dispatch(productsOperations.addProducts(values));
-        await dispatch(productsOperations.getProductsByDay(date));
-    }
+    productSearch(query, currentPage);
+  }, [query, currentPage, productSearch]);
 
-  const updatePage = () => {
-    setCurrentPage(prevPage => prevPage + 1);
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updatePage();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        root: document.getElementById('productsRoot'),
+        threshold: 1,
+      },
+    ),
+  );
+
+  useEffect(() => {
+    const currentElement = element;
+    const currentObserver = observer.current;
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [element]);
+
+  const handleAddProducts = async values => {
+    await dispatch(productsOperations.addProducts(values));
+    await dispatch(productsOperations.getProductsByDay(date));
   };
+
   const handleSubmit = async (event, values) => {
     event.preventDefault();
 
     try {
-       handleAddProducts(values);
+      handleAddProducts(values);
       setTitle('');
       setWeight('');
       setIsOpen(false);
-      setQuery('');
-      setProductsState([]);
     } catch (e) {}
   };
 
@@ -68,7 +113,11 @@ const DiaryAddProductForm = () => {
     setTitle(e.target.value);
     setQuery(e.target.value);
     setIsOpen(true);
+    setCurrentPage(1);
+    setProductsState([]);
   };
+
+  const shouldRenderLoadMoreBtn = productsState.length > 0 && !isLoading;
 
   return (
     <React.Fragment>
@@ -88,14 +137,14 @@ const DiaryAddProductForm = () => {
             required
             autoComplete="off"
             onChange={e => handleTitleChange(e)}
-            // onBlur={() => {
-            //   setTimeout(() => {
-            //     setIsOpen(false);
-            //   }, 300);
-            // }}
+            onBlur={() => {
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 300);
+            }}
           />
-          {isOpen && (
-            <ul className={styles.productList}>
+          {isOpen && productsState.length > 0 && (
+            <ul className={styles.productList} id="productsRoot">
               {productsState.map(el => {
                 return (
                   <li
@@ -109,16 +158,16 @@ const DiaryAddProductForm = () => {
                   </li>
                 );
               })}
-              <li>
-                <button type="button" onClick={updatePage}>
-                  загрузить еще
-                </button>
-              </li>
+              {isLoading ? (
+                <h2>загружаем...</h2>
+              ) : (
+                shouldRenderLoadMoreBtn && more && <li ref={setElement}></li>
+              )}
             </ul>
           )}
         </div>
 
-        {/* <input
+        <input
           className={styles.input}
           label="Граммы"
           placeholder="Граммы *"
@@ -128,7 +177,7 @@ const DiaryAddProductForm = () => {
           required
           value={weight}
           onChange={e => setWeight(e.target.value)}
-        /> */}
+        />
 
         <button type="submit" className={styles.button}>
           <img src={icon} alt="form plus icon" />

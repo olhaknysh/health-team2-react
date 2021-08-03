@@ -16,6 +16,7 @@ const DiaryAddProductForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState('');
   const [weight, setWeight] = useState('');
+  const [query, setQuery] = useState('');
   const [productsState, setProductsState] = useState([]);
 
   const dispatch = useDispatch();
@@ -31,11 +32,12 @@ const DiaryAddProductForm = () => {
   };
 
   useEffect(() => {
-    fetchProductsData(title);
-    if (!title) {
+    if (!query) {
       setIsOpen(false);
+      return;
     }
-  }, [title]);
+    fetchProductsData(query);
+  }, [query]);
 
   const handleSubmit = async (event, values) => {
     event.preventDefault();
@@ -49,10 +51,9 @@ const DiaryAddProductForm = () => {
   };
 
   const handleTitleChange = e => {
-    if (e.target.value) {
-      setTitle(e.target.value);
-      setIsOpen(true);
-    }
+    setTitle(e.target.value);
+    setQuery(e.target.value);
+    setIsOpen(true);
   };
 
   return (
@@ -72,12 +73,12 @@ const DiaryAddProductForm = () => {
             value={title}
             required
             autoComplete="off"
+            onChange={e => handleTitleChange(e)}
             onBlur={() => {
               setTimeout(() => {
                 setIsOpen(false);
               }, 300);
             }}
-            onChange={e => handleTitleChange(e)}
           />
           {isOpen && (
             <ul className={styles.productList}>

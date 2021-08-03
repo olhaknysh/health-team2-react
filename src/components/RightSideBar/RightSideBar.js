@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import s from './RightSideBar.module.scss';
 import { authSelectors } from '../../redux/auth';
-import { productsOperations, productsSelectors } from '../../redux/products';
+import { productsSelectors } from '../../redux/products';
 import { calendarSelectors } from '../../redux/calendar'
+
 
 const RightSideBar = () => {
     const notAllowedProducts = useSelector(authSelectors.notAllowedProducts);
@@ -14,6 +14,15 @@ const RightSideBar = () => {
     const dailyNormalProcent = useSelector(productsSelectors.dailyNormalProcent);
     const date = useSelector(calendarSelectors.currentDate)
 
+    const countedLeftCalories = () => {
+        if (leftCalories > 0) {
+            return leftCalories;
+        } else if (leftCalories < 0) {
+            return totalCalories - dailyCalories;
+        }
+    }
+
+
     return <aside className={s.container}>
         <div className={s.backgroundContainer}></div>
 
@@ -22,9 +31,9 @@ const RightSideBar = () => {
                 <h2 className={s.heading}>Сводка за {date}</h2>
                 <table className={s.table}>
                     <tbody className={s.tableBody}>
-                        <tr>
-                            <td>Осталось</td>
-                            <td>{leftCalories ? Number.parseInt(leftCalories) : '000'} ккал</td>
+                        <tr className={leftCalories < 0 ? `${s.texterror}` : ''} >
+                            <td>{leftCalories > 0 ? "Осталось" : "Излишек"}</td>
+                            <td >{leftCalories ? countedLeftCalories() : '000'} ккал</td>
                         </tr>
                         <tr>
                             <td>Употреблено</td>
@@ -34,7 +43,7 @@ const RightSideBar = () => {
                             <td>Дневная норма</td>
                             <td>{dailyCalories ? Number.parseInt(dailyCalories) : '000'} ккал</td>
                         </tr>
-                        <tr>
+                        <tr >
                             <td>n% от нормы</td>
                             <td>{dailyNormalProcent ? dailyNormalProcent : '000'} %</td>
                         </tr>
@@ -48,7 +57,7 @@ const RightSideBar = () => {
             </div>
         </div>
 
-    </aside>
+    </aside >
 }
 
 export default RightSideBar;

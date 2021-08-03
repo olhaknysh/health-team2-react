@@ -11,6 +11,7 @@ import icon from '../../../utils/images/diary-calendar-icon.svg';
 import { calendarOperations } from '../../../redux/calendar/';
 import { productsOperations } from '../../../redux/products';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const DiaryDateСalendar = () => {
     const dispatch = useDispatch();
@@ -47,7 +48,9 @@ const DiaryDateСalendar = () => {
         try {
             dispatch(calendarOperations.addCurrentDate(date));
             dispatch(productsOperations.getProductsByDay(date));
-        } catch (e) { }
+        } catch (e) {
+            toast.error(e.message)
+        }
     };
 
     return (

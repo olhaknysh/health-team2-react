@@ -1,19 +1,21 @@
 import axios from 'axios';
 import calendarActions from './calendar-actions';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
 const addCurrentDate = date => async dispatch => {
-  dispatch(calendarActions.addCurrentDateRequest());
-  try {
-    dispatch(calendarActions.addCurrentDateSuccess(date));
-  } catch (error) {
-    dispatch(calendarActions.addCurrentDateError(error.message));
-  }
+    dispatch(calendarActions.addCurrentDateRequest());
+    try {
+        dispatch(calendarActions.addCurrentDateSuccess(date));
+    } catch (error) {
+        toast.error(error.message);
+        dispatch(calendarActions.addCurrentDateError(error.message));
+    }
 };
 
 const operations = {
-  addCurrentDate,
+    addCurrentDate,
 };
 
 export default operations;

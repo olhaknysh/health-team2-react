@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './DiaryProductsListItem.module.scss';
+import { toast } from 'react-toastify';
 
 import { productsOperations } from '../../../redux/products';
 
@@ -15,7 +16,7 @@ const DiaryProductsListItem = ({ id, title, weight, calories }) => {
         try {
             dispatch(productsOperations.deleteProducts(id));
         } catch (error) {
-            console.log(error.message);
+            toast.error(error.message)
         }
     };
 

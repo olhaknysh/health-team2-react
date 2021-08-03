@@ -11,7 +11,6 @@ const DailyCaloriesForm = ({ onShowModal }) => {
   const userData = useSelector(authSelectors.getUserData);
   const handleSubmit = values => {
     values.groupBlood = Number(values.groupBlood);
-    // console.log(values)
     dispatch(dailyRateOperations.onFetchDailyRates(values));
 
     setTimeout(() => {

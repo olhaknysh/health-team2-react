@@ -2,26 +2,34 @@ import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import productsActions from './products-actions';
 
-const initialStateProductsByDay = {
-    dailyNormalProcent: '000',
-    leftCalories: '000',
-    totalCalories: '000',
-};
 
-const productsByDay = createReducer(initialStateProductsByDay, {
-    [productsActions.getProductsByDaySuccess]: (_, { payload }) => payload,
-    [productsActions.getProductsByDayError]: () => initialStateProductsByDay
-});
+const dailyNormalProcent = createReducer(0, {
+    [productsActions.getProductsByDaySuccess]: (_, { payload: { dailyNormalProcent } }) => dailyNormalProcent,
+    [productsActions.addProductsOnDaySuccess]: (_, { payload: { dailyNormalProcent } }) => dailyNormalProcent,
+    [productsActions.getProductsByDayError]: () => 0
+})
 
-const addedProducts = createReducer([], {
-    [productsActions.addProductsOnDaySuccess]: (state, { payload }) => [
+const leftCalories = createReducer(0, {
+    [productsActions.getProductsByDaySuccess]: (_, { payload: { leftCalories } }) => leftCalories,
+    [productsActions.addProductsOnDaySuccess]: (_, { payload: { leftCalories } }) => leftCalories,
+    [productsActions.getProductsByDayError]: () => 0
+})
+
+const totalCalories = createReducer(0, {
+    [productsActions.getProductsByDaySuccess]: (_, { payload: { totalCalories } }) => totalCalories,
+    [productsActions.addProductsOnDaySuccess]: (_, { payload: { totalCalories } }) => totalCalories,
+    [productsActions.getProductsByDayError]: () => 0
+})
+
+const productsByDay = createReducer([], {
+    [productsActions.getProductsByDaySuccess]: (_, { payload: { products } }) => products,
+    [productsActions.getProductsByDayError]: () => [],
+    [productsActions.addProductsOnDaySuccess]: (state, { payload: { product } }) => [
         ...state,
-        payload,
+        product,
     ],
-
     [productsActions.deleteProductsOnDaySuccess]: (state, { payload }) =>
         state.filter(({ _id }) => _id !== payload),
-    [productsActions.getProductsByDayError]: () => []
 });
 
 const error = createReducer(null, {
@@ -40,7 +48,9 @@ const loading = createReducer(false, {
 
 export default combineReducers({
     productsByDay,
-    addedProducts,
     error,
     loading,
+    dailyNormalProcent,
+    leftCalories,
+    totalCalories
 });

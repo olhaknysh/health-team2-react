@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import _ from 'lodash';
 import styles from './DiaryAddProductForm.module.scss';
 
+
 import icon from '../../../utils/images/diary-plus-icon.svg';
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,6 +11,7 @@ import { calendarSelectors } from '../../../redux/calendar';
 import axios from 'axios';
 
 import { productsOperations } from '../../../redux/products';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
@@ -93,20 +95,18 @@ const DiaryAddProductForm = () => {
     };
   }, [element]);
 
-  const handleAddProducts = async values => {
-    await dispatch(productsOperations.addProducts(values));
-    await dispatch(productsOperations.getProductsByDay(date));
-  };
 
   const handleSubmit = async (event, values) => {
     event.preventDefault();
 
     try {
-      handleAddProducts(values);
+       dispatch(productsOperations.addProducts(values));
       setTitle('');
       setWeight('');
       setIsOpen(false);
-    } catch (e) {}
+    } catch (e) {
+       toast.error(e.message)
+    }
   };
 
   const handleTitleChange = e => {
@@ -184,7 +184,7 @@ const DiaryAddProductForm = () => {
         </button>
       </form>
     </React.Fragment>
-  );
+  );                   
 };
 
 export default DiaryAddProductForm;

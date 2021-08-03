@@ -8,9 +8,8 @@ import DiaryProductsListItem from '../DiaryProductsListItem';
 
 const DiaryProductsList = () => {
     const productsByDay = useSelector(productsSelectors.getProductsByDay);
-    const products = useSelector(productsSelectors.getProducts)
     // const isLoading = useSelector(productsSelectors.isLoading);
-    console.log(productsByDay);
+
 
     return (
         <div className={styles.container}>

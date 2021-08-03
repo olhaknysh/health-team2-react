@@ -10,6 +10,7 @@ const initialStateProductsByDay = {
 
 const productsByDay = createReducer(initialStateProductsByDay, {
   [productsActions.getProductsByDaySuccess]: (_, { payload }) => payload,
+  [productsActions.clearProductsByDaySuccess]: () => initialStateProductsByDay,
 });
 
 const addedProducts = createReducer([], {

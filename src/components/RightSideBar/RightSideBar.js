@@ -8,9 +8,11 @@ import { calendarSelectors } from '../../redux/calendar';
 const RightSideBar = () => {
   const date = useSelector(calendarSelectors.currentDate)
   const dispatch = useDispatch();
-  console.log('date:', date)
   useEffect(() => {
     dispatch(productsOperations.getProductsByDay(date));
+    return () => {
+      dispatch(productsOperations.clearFieldsProductsByDay())
+    }
   }, [dispatch, date])
 
   const notAllowedProducts = useSelector(authSelectors.notAllowedProducts);

@@ -8,6 +8,10 @@ const getProductsByDaySuccess = createAction(
 );
 const getProductsByDayError = createAction('products/getProductsByDayError');
 
+const clearProductsByDayRequest = createAction('products/clearProductsByDayRequest');
+const clearProductsByDaySuccess = createAction('products/clearProductsByDaySuccess');
+const clearProductsByDayError = createAction('products/clearProductsByDayError');
+
 const addProductsOnDayRequest = createAction(
   'products/addProductsOnDayRequest',
 );
@@ -33,6 +37,9 @@ export default {
   getProductsByDayRequest,
   getProductsByDaySuccess,
   getProductsByDayError,
+  clearProductsByDayRequest,
+  clearProductsByDaySuccess,
+  clearProductsByDayError,
   addProductsOnDayRequest,
   addProductsOnDaySuccess,
   addProductsOnDayError,

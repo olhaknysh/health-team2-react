@@ -13,6 +13,15 @@ const getProductsByDay = date => async dispatch => {
   }
 };
 
+const clearFieldsProductsByDay = () => dispatch => {
+  dispatch(productsActions.clearProductsByDayRequest())
+  try {
+    dispatch(productsActions.clearProductsByDaySuccess())
+  } catch (error) {
+    dispatch(productsActions.clearProductsByDayError())
+  }
+}
+
 const addProducts = values => async dispatch => {
   dispatch(productsActions.addProductsOnDayRequest());
 
@@ -39,4 +48,5 @@ export default {
   getProductsByDay,
   addProducts,
   deleteProducts,
+  clearFieldsProductsByDay
 };

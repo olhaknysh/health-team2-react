@@ -57,7 +57,7 @@ const RegisterForm = () => {
             <FormControl
               label="Пароль"
               name="password"
-              type="text"
+              type="password"
               id="password"
               placeholder="Пароль *"
               value={values.password}

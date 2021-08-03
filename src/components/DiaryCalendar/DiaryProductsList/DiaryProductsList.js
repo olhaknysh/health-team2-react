@@ -1,19 +1,25 @@
 import React from 'react';
 
 import styles from './DiaryProductsList.module.scss';
+import { useSelector } from 'react-redux';
+import { productsSelectors } from '../../../redux/products';
 
 // Comps
-// import DiaryProductsListItem from '../DiaryProductsListItem';
+import DiaryProductsListItem from '../DiaryProductsListItem';
 
 const DiaryProductsList = () => {
+  const products = useSelector(productsSelectors.getProducts);
   return (
     <div className={styles.container}>
+      {products.length === 0 && (
+        <h2 className={styles.noProductsHeading}>
+          Добавте продукты за сегодня
+        </h2>
+      )}
       <ul className={styles.list}>
-        {true && (
-          <h2 className={styles.noProductsHeading}>
-            Добавте продукты за сегодня
-          </h2>
-        )}
+        {products.map(({ _id }) => (
+          <DiaryProductsListItem key={_id} id={_id} />
+        ))}
       </ul>
       <div className={styles.overlay}></div>
     </div>

@@ -1,13 +1,21 @@
 import Button from '../Button';
+import { Link } from 'react-router-dom';
+import {  useSelector } from 'react-redux';
+import { useMedia } from 'react-use';
+
 import { ReactComponent as CrossIcon } from '../../utils/images/icons/cross.svg';
 import { ReactComponent as ArrowIcon } from '../../utils/images/icons/arrowBack.svg';
-import { useMedia } from 'react-use';
-import paths from '../../utils/routes';
-import { Link } from 'react-router-dom';
+
 import styles from './DailyCalorieIntake.module.scss';
+import paths from '../../utils/routes';
+import dailyRateSelector from "../../redux/dailyRate/dailyRateSelector";
+
 const DailyCalorieIntake = ({ onClose }) => {
   const isWide = useMedia('(min-width: 624px)');
 
+  const getCalories = useSelector(dailyRateSelector.getCalories);
+  const products = useSelector(dailyRateSelector.getProducts);
+  console.log(products);
   return (
     <section
       className={styles.MainSectionModal}
@@ -41,7 +49,7 @@ const DailyCalorieIntake = ({ onClose }) => {
           Ваша рекомендуемая суточная норма калорий составляет
         </h1>
         <p className={styles.PharagraphCalorieCounting}>
-          <span>2800</span> ккал
+          <span>{getCalories}</span> ккал
         </p>
       </header>
       <section className={styles.SectionNotReccomendProduts}>
@@ -49,10 +57,11 @@ const DailyCalorieIntake = ({ onClose }) => {
           Продукты, которые вам <br /> не рекомендуется употреблять
         </h2>
         <ol className={styles.ProductsList}>
-          <li>Мучные продукты</li>
-          <li>Молоко</li>
-          <li>Красное мясо</li>
-          <li>Копчености</li>
+          {products?.map(item => (
+					<li key={item}>
+              <p>{item[0].toUpperCase() + item.slice(1)}</p>
+					</li>
+				))}
         </ol>
       </section>
       <footer className={styles.FooterModal}>

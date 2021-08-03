@@ -11,17 +11,16 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
-import { productsReducer } from './products'
+import { productsReducer } from './products';
 import { calendarReducer } from './calendar';
 
-
 const middleware = [
-    ...getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-        }
-    })
-]
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
 
 const authPersistConfig = {
   key: 'auth',
@@ -29,19 +28,14 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
-const calendarPersistConfig = {
-  key: 'calendar',
-  storage,
-};
-
 export const store = configureStore({
-    reducer: {
-        auth: persistReducer(authPersistConfig, authReducer),
-        products: productsReducer,
-        calendar: persistReducer(calendarPersistConfig, calendarReducer)
-    },
-    middleware,
-    devTools: process.env.NODE_ENV === 'development',
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    products: productsReducer,
+    calendar: calendarReducer,
+  },
+  middleware,
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export const persistor = persistStore(store);

@@ -8,7 +8,7 @@ body {
 
 main {
   position: relative;
-  overflow-y: scroll;
+  overflow: hidden;
 
   @media screen and (min-width: 768px) {
     min-height: 1024px;

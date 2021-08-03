@@ -4,11 +4,13 @@ import styles from './DiaryProductsList.module.scss';
 import { useSelector } from 'react-redux';
 import { productsSelectors } from '../../../redux/products';
 
-// Comps
 import DiaryProductsListItem from '../DiaryProductsListItem';
 
 const DiaryProductsList = () => {
   const products = useSelector(productsSelectors.getProducts);
+  // const productsByDay = useSelector(productsSelectors.getProductsByDay);
+  // const isLoading = useSelector(productsSelectors.isLoading);
+
   return (
     <div className={styles.container}>
       {products.length === 0 && (

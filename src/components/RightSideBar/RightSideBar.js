@@ -16,9 +16,9 @@ const RightSideBar = () => {
 
     const countedLeftCalories = () => {
         if (leftCalories > 0) {
-            return leftCalories;
+            return Number.parseInt(leftCalories);
         } else if (leftCalories < 0) {
-            return totalCalories - dailyCalories;
+            return Number.parseInt(totalCalories - dailyCalories);
         }
     }
 

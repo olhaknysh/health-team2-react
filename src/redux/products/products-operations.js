@@ -30,8 +30,8 @@ const addProducts = values => async dispatch => {
 const deleteProducts = productId => async dispatch => {
     dispatch(productsActions.deleteProductsOnDayRequest());
     try {
-        await axios.delete(`/products/${productId}`);
-        dispatch(productsActions.deleteProductsOnDaySuccess(productId));
+        const { data } = await axios.delete(`/products/${productId}`);
+        dispatch(productsActions.deleteProductsOnDaySuccess({ productId, data }));
     } catch (error) {
         toast.error(error.message);
         dispatch(productsActions.deleteProductsOnDayError(error.message));

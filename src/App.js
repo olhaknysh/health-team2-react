@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from './components/Header';
-import Loader from './components/common/Loader'
+import Loader from './components/common/Loader';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import paths from './utils/routes';
@@ -27,8 +27,8 @@ const DiaryPage = lazy(() =>
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(authOperations.getCurrentUser())
-  }, [dispatch])
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
   return (
     <>
       <Header />
@@ -47,25 +47,17 @@ const App = () => {
               <RegisterPage />
             </PublicRoute>
 
-            <PublicRoute
-              path={paths.login}
-              restricted
-              redirectTo={paths.diary}
-            >
+            <PublicRoute path={paths.login} restricted redirectTo={paths.diary}>
               <LoginPage />
             </PublicRoute>
 
-            <PrivateRoute
-              path={paths.calculator}
-              redirectTo={paths.login}
-            >
+            <PrivateRoute path={paths.calculator} redirectTo={paths.login}>
               <CalculatorPage />
             </PrivateRoute>
 
             <PrivateRoute path={paths.diary} redirectTo={paths.login}>
               <DiaryPage />
             </PrivateRoute>
-
 
             <Redirect to="/" />
           </Switch>

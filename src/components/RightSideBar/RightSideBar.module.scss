@@ -19,11 +19,11 @@
   z-index: -1;
   width: 500%;
   background: rgba(0, 0, 0, 0.05);
+  height: 100vh;
 
   @media screen and (max-width: 1079px) {
     left: 50%;
     transform: translateX(-50%);
-    height: 500%;
   }
 }
 

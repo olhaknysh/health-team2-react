@@ -1,5 +1,6 @@
 import axios from 'axios';
 import productsActions from './products-actions';
+import { toast } from 'react-toastify';
 
 const getProductsByDay = date => async dispatch => {
     dispatch(productsActions.getProductsByDayRequest());
@@ -9,7 +10,8 @@ const getProductsByDay = date => async dispatch => {
 
         dispatch(productsActions.getProductsByDaySuccess(data));
     } catch (error) {
-        dispatch(productsActions.getProductsByDayError());
+        toast.error(error.message);
+        dispatch(productsActions.getProductsByDayError(error.message));
     }
 };
 
@@ -20,6 +22,7 @@ const addProducts = values => async dispatch => {
     try {
         dispatch(productsActions.addProductsOnDaySuccess(data));
     } catch (error) {
+        toast.error(error.message);
         dispatch(productsActions.addProductsOnDayError(error.message));
     }
 };
@@ -30,6 +33,7 @@ const deleteProducts = productId => async dispatch => {
         await axios.delete(`/products/${productId}`);
         dispatch(productsActions.deleteProductsOnDaySuccess(productId));
     } catch (error) {
+        toast.error(error.message);
         dispatch(productsActions.deleteProductsOnDayError(error.message));
     }
 };

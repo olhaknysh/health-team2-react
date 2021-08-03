@@ -35,7 +35,7 @@ function CalculatorCalorieForm() {
       .when('currentWeight', (currentWeight, schema) => {
         return schema.test({
           test: desireWeight => !!currentWeight && desireWeight < currentWeight,
-          message: 'Желаемый вес должен быть меньше текущего',
+            message: 'Желаемый вес должен быть меньше текущего',
         });
       }),
     groupBlood: Yup.number().required('Обязательно'),
@@ -48,11 +48,14 @@ function CalculatorCalorieForm() {
         initialValues={{
           height: userData && userData.height ? userData.height : '',
           age: userData && userData.age ? userData.age : '',
-          currentWeight: userData && userData.weight ? userData.currentWeight : '',
+          currentWeight:
+            userData && userData.weight ? userData.currentWeight : '',
           desireWeight:
             userData && userData.desireWeight ? userData.desireWeight : '',
           groupBlood:
-            userData && userData.groupBlood ? userData.groupBlood.toString() : '',
+            userData && userData.groupBlood
+              ? userData.groupBlood.toString()
+              : '',
         }}
         enableReinitialize
         onSubmit={values => {
@@ -117,7 +120,9 @@ function CalculatorCalorieForm() {
                   <Field
                     placeholder=" "
                     className={`${styles.input} ${
-                      touched.currentWeight && errors.currentWeight ? styles.errorInput : ''
+                      touched.currentWeight && errors.currentWeight
+                        ? styles.errorInput
+                        : ''
                     }`}
                     name="currentWeight"
                     type="number"
@@ -173,7 +178,12 @@ function CalculatorCalorieForm() {
                     <div className={styles.errorRadio}>{errors.groupBlood}</div>
                   )}
                   <div className={styles.radioWrapper} role="group">
-                    <Field id="first" type="radio" name="groupBlood" value="1" />
+                    <Field
+                      id="first"
+                      type="radio"
+                      name="groupBlood"
+                      value="1"
+                    />
                     <label htmlFor="first" className={styles.radioLabel}>
                       1
                     </label>
@@ -186,7 +196,12 @@ function CalculatorCalorieForm() {
                     <label htmlFor="second" className={styles.radioLabel}>
                       2
                     </label>
-                    <Field id="third" type="radio" name="groupBlood" value="3" />
+                    <Field
+                      id="third"
+                      type="radio"
+                      name="groupBlood"
+                      value="3"
+                    />
                     <label htmlFor="third" className={styles.radioLabel}>
                       3
                     </label>

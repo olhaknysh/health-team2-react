@@ -3,6 +3,7 @@
 .item {
   display: flex;
   align-items: center;
+  border: 1px solid transparent;
 }
 
 .item:not(:last-child) {
@@ -50,8 +51,7 @@
   padding: 5px;
   background-color: transparent;
   outline: none;
-  border: none;
-  border-radius: 50%;
+  border: 1px solid transparent;
   transition: all ease-in-out 300ms;
   cursor: pointer;
   margin-right: 42px;
@@ -59,19 +59,18 @@
 
 .delete:hover,
 .delete:active {
-  transform: scale(1.3);
+  border-color: #e0e0e0;
   transition: all ease-in-out 300ms;
 }
 
 @media (max-width: 767px) {
   .item {
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-end;
   }
   .item:not(:last-child) {
     margin-bottom: 20px;
   }
-
   .product {
     padding-bottom: 10px;
     width: 115px;
@@ -91,7 +90,7 @@
   }
 
   .delete {
-    margin-right: 0;
+    margin-right: 12px;
   }
 
   .delete > img {
@@ -102,12 +101,10 @@
   .cal {
     font-size: 10px;
   }
-}
 
-@media (max-width: 767px) {
   .quantity,
   .calories {
-    width: 15%;
+    width: 20%;
   }
 
   .product {

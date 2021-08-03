@@ -1,19 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import styles from './DiaryAddProductForm.module.scss';
 
-// Icon
 import icon from '../../../utils/images/diary-plus-icon.svg';
 
-// Redux
 import { useSelector, useDispatch } from 'react-redux';
-import calendarSelectors from '../../../redux/calendar/calendar-selectors';
-// import getProducts from '../../../redux/products/products-selectors';
+import { calendarSelectors } from '../../../redux/calendar';
 
-// axios
 import axios from 'axios';
 
-//operations
 import { productsOperations } from '../../../redux/products';
 
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
@@ -27,6 +21,7 @@ const DiaryAddProductForm = () => {
   const dispatch = useDispatch();
 
   const date = useSelector(calendarSelectors.currentDate);
+  // const isLoading = useSelector(calendarSelectors.isLoading);
 
   const fetchProductsData = async value => {
     try {
@@ -44,15 +39,19 @@ const DiaryAddProductForm = () => {
 
   const handleSubmit = async (event, values) => {
     event.preventDefault();
-    // перевірка, мабуть, не потрібна
-    // if (Object.values(values).length === 0) return;
+
     try {
       dispatch(productsOperations.addProducts(values));
       setTitle('');
       setWeight('');
       setIsOpen(false);
-    } catch (e) {
-      console.log(e.message);
+    } catch (e) {}
+  };
+
+  const handleTitleChange = e => {
+    if (e.target.value) {
+      setTitle(e.target.value);
+      setIsOpen(true);
     }
   };
 
@@ -73,10 +72,12 @@ const DiaryAddProductForm = () => {
             value={title}
             required
             autoComplete="off"
-            onChange={e => {
-              setTitle(e.target.value);
-              setIsOpen(true);
+            onBlur={() => {
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 300);
             }}
+            onChange={e => handleTitleChange(e)}
           />
           {isOpen && (
             <ul className={styles.productList}>
@@ -85,8 +86,8 @@ const DiaryAddProductForm = () => {
                   <li
                     key={el.title.ru}
                     onClick={() => {
-                      setIsOpen(false);
                       setTitle(el.title.ru);
+                      setIsOpen(false);
                     }}
                   >
                     <span>{el.title.ru}</span>

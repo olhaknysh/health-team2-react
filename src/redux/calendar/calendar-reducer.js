@@ -8,7 +8,7 @@ const day = startDate[1];
 const month = startDate[0];
 const year = startDate[2];
 const date = `${day}-${month}-${year}`;
-console.log(date);
+
 const currentDate = createReducer(`${date}`, {
   [calendarActions.addCurrentDateSuccess]: (_, { payload }) => payload,
 });

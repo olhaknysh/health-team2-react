@@ -2,19 +2,14 @@ import React, { useState } from 'react';
 
 import styles from './DiaryDateСalendar.module.scss';
 
-// Moment
 import moment from 'moment';
-
-// Datepicker
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// Icon
 import icon from '../../../utils/images/diary-calendar-icon.svg';
 
-// Redux
-import calendarActions from '../../../redux/calendar/calendar-actions';
-
+import { calendarOperations } from '../../../redux/calendar/';
+import { productsOperations } from '../../../redux/products';
 import { useDispatch } from 'react-redux';
 
 const DiaryDateСalendar = () => {
@@ -36,7 +31,6 @@ const DiaryDateСalendar = () => {
   const handleChange = async e => {
     setIsOpen(!isOpen);
     setStartDate(e);
-    dispatch(calendarActions.addCurrentDateRequest());
 
     const currentDate = moment(e).format('L').split('/');
     const day = currentDate[1];
@@ -45,10 +39,9 @@ const DiaryDateСalendar = () => {
     const date = `${day}-${month}-${year}`;
 
     try {
-      dispatch(calendarActions.addCurrentDateSuccess(date));
-    } catch (e) {
-      dispatch(calendarActions.addCurrentDateError());
-    }
+      dispatch(calendarOperations.addCurrentDate(date));
+      dispatch(productsOperations.getProductsByDay(date));
+    } catch (e) {}
   };
 
   return (

@@ -1,5 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 const totalEatedCalories = state => state.products.productsByDay.totalCalories;
+const getProductsByDay = state => state.products.productsByDay.products;
+const isLoading = state => state.products.loading;
 
 const leftCalories = state => state.products.productsByDay.leftCalories;
 
@@ -20,4 +22,6 @@ export default {
   dailyNormalProcent,
   getProducts,
   getProduct,
+  getProductsByDay,
+  isLoading,
 };

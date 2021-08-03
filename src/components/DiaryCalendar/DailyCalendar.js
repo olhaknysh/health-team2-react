@@ -1,15 +1,11 @@
 import styles from './DiaryCalendar.module.scss';
 
-// Router
 import { NavLink } from 'react-router-dom';
 
-// Icon
 import icon from '../../utils/images/diary-plus-icon.svg';
 
-// common
 import Button from '../../components/Button';
 
-// Comps
 import DiaryDateСalendar from '../../components/DiaryCalendar/DiaryDateСalendar';
 import DiaryAddProductForm from '../../components/DiaryCalendar/DiaryAddProductForm';
 import DiaryProductsList from '../../components/DiaryCalendar/DiaryProductsList';

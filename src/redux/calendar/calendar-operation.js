@@ -3,19 +3,17 @@ import calendarActions from './calendar-actions';
 
 axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 
-const addCurrentDateProducts = credentials => async dispatch => {
+const addCurrentDate = date => async dispatch => {
   dispatch(calendarActions.addCurrentDateRequest());
-  const { data } = await axios.post('/');
-
   try {
-    dispatch(calendarActions.addCurrentDateSuccess(data));
+    dispatch(calendarActions.addCurrentDateSuccess(date));
   } catch (error) {
     dispatch(calendarActions.addCurrentDateError(error.message));
   }
 };
 
 const operations = {
-  addCurrentDateProducts,
+  addCurrentDate,
 };
 
 export default operations;

@@ -15,9 +15,9 @@
   top: 50%;
   left: 50%;
 
-  max-width: 320px;
-  min-height: 580px;
   width: 100%;
+  min-height: 580px;
+
   animation: show-modal 0.5s forwards;
 
   background-color: #fff;
@@ -40,6 +40,6 @@
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -52%);
   }
 }

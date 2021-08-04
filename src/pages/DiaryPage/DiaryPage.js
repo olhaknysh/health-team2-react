@@ -1,10 +1,9 @@
 import React from 'react';
 import { useMedia } from 'react-use';
-
+import { ToastContainer } from 'react-toastify';
 import styles from './DiaryPage.module.scss';
 
 import Container from '../../components/common/Container';
-
 // Comps
 import DiaryCalendar from '../../components/DiaryCalendar';
 import RightSideBar from '../../components/RightSideBar';
@@ -14,6 +13,7 @@ const DiaryPage = () => {
 
   return (
     <>
+      <ToastContainer />
       {isWide ? (
         <div className={styles.bgContainer}>
           <div className={styles.background}></div>

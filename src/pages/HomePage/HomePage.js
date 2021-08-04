@@ -1,6 +1,7 @@
 import s from './HomePage.module.scss';
 import { useState, useRef } from 'react';
 import { useMedia } from 'react-use';
+import { ToastContainer } from 'react-toastify';
 import Container from '../../components/common/Container';
 import { CSSTransition } from 'react-transition-group';
 import Modal from '../../components/Modal';
@@ -64,6 +65,7 @@ export default function HomePage() {
       ) : (
         ''
       )}
+      <ToastContainer />
       <Container>
         <div className={s.container}>
           <DailyCaloriesForm onShowModal={toggleModal} />

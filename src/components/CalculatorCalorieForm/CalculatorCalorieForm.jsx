@@ -221,11 +221,9 @@ function CalculatorCalorieForm() {
                 </div>
               </div>
                       </div>
-            <Link to={paths.diary}>
             <button className={styles.button} type="submit">
              Похудеть
             </button>
-             </Link>
           </Form>
         )}
       </Formik>

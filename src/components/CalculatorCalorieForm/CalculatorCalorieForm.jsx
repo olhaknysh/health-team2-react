@@ -1,10 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styles from './CalculatorCalorieForm.module.css';
 import dailyRateOperations from '../../redux/dailyRate/dailyRateOperations';
 import authSelectors from '../../redux/auth/auth-selectors';
+import paths from '../../utils/routes';
 
 
 function CalculatorCalorieForm() {
@@ -218,10 +220,12 @@ function CalculatorCalorieForm() {
                   </div>
                 </div>
               </div>
-            </div>
+                      </div>
+            <Link to={paths.diary}>
             <button className={styles.button} type="submit">
-              Похудеть
+             Похудеть
             </button>
+             </Link>
           </Form>
         )}
       </Formik>

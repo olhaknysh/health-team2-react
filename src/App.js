@@ -9,62 +9,62 @@ import { authOperations } from './redux/auth';
 import { useDispatch } from 'react-redux';
 
 const HomePage = lazy(() =>
-  import('./pages/HomePage' /* webpackChunkName: "home-page" */),
+    import('./pages/HomePage' /* webpackChunkName: "home-page" */),
 );
 const RegisterPage = lazy(() =>
-  import('./pages/RegisterPage' /* webpackChunkName: "register-page" */),
+    import('./pages/RegisterPage' /* webpackChunkName: "register-page" */),
 );
 const LoginPage = lazy(() =>
-  import('./pages/LoginPage' /* webpackChunkName: "login-page" */),
+    import('./pages/LoginPage' /* webpackChunkName: "login-page" */),
 );
 const CalculatorPage = lazy(() =>
-  import('./pages/CalculatorPage' /* webpackChunkName: "calculator-page" */),
+    import('./pages/CalculatorPage' /* webpackChunkName: "calculator-page" */),
 );
 const DiaryPage = lazy(() =>
-  import('./pages/DiaryPage' /* webpackChunkName: "diary-page" */),
+    import('./pages/DiaryPage' /* webpackChunkName: "diary-page" */),
 );
 
 const App = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(authOperations.getCurrentUser());
-  }, [dispatch]);
-  return (
-    <>
-      <Header />
-      <main>
-        <Suspense fallback={<Loader />}>
-          <Switch>
-            <Route exact path={paths.home}>
-              <HomePage />
-            </Route>
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(authOperations.getCurrentUser());
+    }, [dispatch]);
+    return (
+        <>
+            <Header />
+            <main>
+                <Suspense fallback={<Loader />}>
+                    <Switch>
+                        <PublicRoute exact path={paths.home} restricted redirectTo={paths.diary}>
+                            <HomePage />
+                        </PublicRoute>
 
-            <PublicRoute
-              path={paths.register}
-              restricted
-              redirectTo={paths.diary}
-            >
-              <RegisterPage />
-            </PublicRoute>
+                        <PublicRoute
+                            path={paths.register}
+                            restricted
+                            redirectTo={paths.diary}
+                        >
+                            <RegisterPage />
+                        </PublicRoute>
 
-            <PublicRoute path={paths.login} restricted redirectTo={paths.diary}>
-              <LoginPage />
-            </PublicRoute>
+                        <PublicRoute path={paths.login} restricted redirectTo={paths.diary}>
+                            <LoginPage />
+                        </PublicRoute>
 
-            <PrivateRoute path={paths.calculator} redirectTo={paths.login}>
-              <CalculatorPage />
-            </PrivateRoute>
+                        <PrivateRoute path={paths.calculator} redirectTo={paths.login}>
+                            <CalculatorPage />
+                        </PrivateRoute>
 
-            <PrivateRoute path={paths.diary} redirectTo={paths.login}>
-              <DiaryPage />
-            </PrivateRoute>
+                        <PrivateRoute path={paths.diary} redirectTo={paths.login}>
+                            <DiaryPage />
+                        </PrivateRoute>
 
-            <Redirect to="/" />
-          </Switch>
-        </Suspense>
-      </main>
-    </>
-  );
+                        <Redirect to="/" />
+                    </Switch>
+                </Suspense>
+            </main>
+        </>
+    );
 };
 
 export default App;

@@ -15,7 +15,6 @@ const DailyCalorieIntake = ({ onClose }) => {
 
   const getCalories = useSelector(dailyRateSelector.getCalories);
   const products = useSelector(dailyRateSelector.getProducts);
-  console.log(products);
   return (
     <section
       className={styles.MainSectionModal}

@@ -21,7 +21,6 @@ const RegisterForm = () => {
         try {
             await dispatch(authOperations.register(values));
             if (error) {
-                console.log(error);
                 return;
             }
             const { login, password } = values;

@@ -1,6 +1,12 @@
 import React from 'react';
 import { useMedia } from 'react-use';
+import { ToastContainer } from 'react-toastify';
+import styles from './DiaryPage.module.scss';
+
+import Container from '../../components/common/Container';
+
 import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth'
 
 import styles from './DiaryPage.module.scss';
 
@@ -10,7 +16,6 @@ import DiaryCalendar from '../../components/DiaryCalendar';
 import RightSideBar from '../../components/RightSideBar';
 import DailyCaloriesDiaryInfo from '../../components/DailyCaloriesDiaryInfo'
 
-import { authSelectors } from '../../redux/auth'
 
 const DiaryPage = () => {
     const isWide = useMedia('(min-width: 768px)');
@@ -18,6 +23,7 @@ const DiaryPage = () => {
 
     return (
         <>
+      <ToastContainer />
             {isWide ? (
                 <div className={styles.bgContainer}>
                     <div className={styles.background}></div>

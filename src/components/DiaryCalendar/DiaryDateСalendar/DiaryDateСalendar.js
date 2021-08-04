@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
+import getInitialDate from '../../../utils/date';
 import styles from './DiaryDateСalendar.module.scss';
 
-import moment from 'moment';
+// import moment from 'moment';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,70 +14,59 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 const DiaryDateСalendar = () => {
-    const dispatch = useDispatch();
-    const [startDate, setStartDate] = useState(new Date());
-    const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [startDate, setStartDate] = useState(new Date());
+  const [isOpen, setIsOpen] = useState(false);
+  const initialDate = getInitialDate(startDate);
+  useEffect(() => {
+    dispatch(productsOperations.getProductsByDay(initialDate));
+    dispatch(calendarOperations.addCurrentDate(initialDate));
+  }, [dispatch]);
 
+  const handleClick = e => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
 
-    const currentDate = moment(startDate).format('L').split('/');
-    const day = currentDate[1];
-    const month = currentDate[0];
-    const year = currentDate[2];
-    const date = `${day}-${month}-${year}`;
+  const handleChange = async e => {
+    setIsOpen(!isOpen);
+    setStartDate(e);
 
-    useEffect(() => {
-        dispatch(productsOperations.getProductsByDay(date));
-        dispatch(calendarOperations.addCurrentDate(date));
-    }, [dispatch]);
+    const date = getInitialDate(e);
 
-    const handleClick = e => {
-        e.preventDefault();
-        setIsOpen(!isOpen);
-    };
+    try {
+      dispatch(calendarOperations.addCurrentDate(date));
+      dispatch(productsOperations.getProductsByDay(date));
+    } catch (e) {
+      toast.error('Операции по этой дате не доступны');
+    }
+  };
 
-    const handleChange = async e => {
-        setIsOpen(!isOpen);
-        setStartDate(e);
-
-        const currentDate = moment(e).format('L').split('/');
-        const day = currentDate[1];
-        const month = currentDate[0];
-        const year = currentDate[2];
-        const date = `${day}-${month}-${year}`;
-
-        try {
-            dispatch(calendarOperations.addCurrentDate(date));
-            dispatch(productsOperations.getProductsByDay(date));
-        } catch (e) {
-            toast.error(e.message)
-        }
-    };
-
-    return (
-        <React.Fragment>
-            <div className={styles.container}>
-                <DatePicker
-                    selected={startDate}
-                    onChange={handleChange}
-                    customInput={
-                        <time className={styles.date} onClick={handleClick}>
-                            {date}
-                        </time>
-                    }
-                />
-                <DatePicker
-                    selected={startDate}
-                    onChange={handleChange}
-                    withPortal
-                    customInput={
-                        <button className={styles.customButton} onClick={handleClick}>
-                            <img src={icon} alt="date icon" />
-                        </button>
-                    }
-                />
-            </div>
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <div className={styles.container}>
+        <DatePicker
+          selected={startDate}
+          onChange={handleChange}
+          customInput={
+            <time className={styles.date} onClick={handleClick}>
+              {initialDate}
+            </time>
+          }
+        />
+        <DatePicker
+          selected={startDate}
+          onChange={handleChange}
+          withPortal
+          customInput={
+            <button className={styles.customButton} onClick={handleClick}>
+              <img src={icon} alt="date icon" />
+            </button>
+          }
+        />
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default DiaryDateСalendar;

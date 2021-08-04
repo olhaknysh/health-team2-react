@@ -3,12 +3,8 @@ import { useMedia } from 'react-use';
 import { ToastContainer } from 'react-toastify';
 import styles from './DiaryPage.module.scss';
 
-import Container from '../../components/common/Container';
-
 import { useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth'
-
-import styles from './DiaryPage.module.scss';
 
 import Container from '../../components/common/Container';
 
@@ -23,7 +19,7 @@ const DiaryPage = () => {
 
     return (
         <>
-      <ToastContainer />
+            <ToastContainer />
             {isWide ? (
                 <div className={styles.bgContainer}>
                     <div className={styles.background}></div>

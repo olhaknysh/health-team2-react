@@ -14,15 +14,18 @@ const getUserData = state => state.auth.user.userInfo;
 
 const token = state => state.auth.token;
 
+const authError = state => state.auth.error;
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  getIsAuthenticated,
-  getUserName,
-  isLoading,
-  notAllowedProducts,
-  dailyCalories,
-  getUserId,
-  getUserData,
-  token
+    getIsAuthenticated,
+    getUserName,
+    isLoading,
+    notAllowedProducts,
+    dailyCalories,
+    getUserId,
+    getUserData,
+    token,
+    authError
 };

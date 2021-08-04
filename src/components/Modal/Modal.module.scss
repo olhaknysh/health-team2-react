@@ -1,0 +1,45 @@
+@import '../../utils/saas//_mixins.scss';
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 4;
+  background-color: rgba(33, 33, 33, 0.1);
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100%;
+  min-height: 580px;
+
+  animation: show-modal 0.5s forwards;
+
+  background-color: #fff;
+  border-radius: 3px;
+  @include for-size(tablet) {
+    max-width: 594px;
+  }
+
+  @include for-size(desktop) {
+    max-width: 690px;
+  }
+}
+
+@keyframes show-modal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -150%);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -52%);
+  }
+}

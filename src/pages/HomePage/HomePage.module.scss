@@ -1,0 +1,99 @@
+.container {
+  padding-top: 110px;
+
+  @media screen and(min-width: 768px) {
+    padding-top: 180px;
+  }
+
+  @media screen and(min-width: 1080px) {
+    padding-top: 292px;
+  }
+}
+
+.bgContainer {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.background1 {
+  position: absolute;
+  right: -3%;
+  bottom: -30%;
+  width: 70%;
+  height: 100%;
+  background-image: url('../../utils/images/background/home-page/bg-1.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right bottom;
+
+  @media screen and (min-width: 1025px) {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+  }
+}
+
+.background2 {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  width: 28%;
+  height: 28%;
+  background-image: url('../../utils/images/background/home-page/bg-2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  @media screen and (min-width: 1025px) {
+    top: 50%;
+    right: 0;
+    width: 35%;
+    height: 35%;
+  }
+}
+
+.background3 {
+  position: absolute;
+  bottom: -10%;
+  right: 0;
+  width: 45%;
+  height: 45%;
+  background-image: url('../../utils/images/background/home-page/bg-3.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+
+  @media screen and (min-width: 1025px) {
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.background4 {
+  position: absolute;
+  bottom: -20%;
+  left: 5%;
+  width: 70%;
+  height: 100%;
+  background-image: url('../../utils/images/background/home-page/bg-4-tablet.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  @media screen and (min-width: 1025px) {
+    top: 0;
+    bottom: unset;
+    left: unset;
+    right: 5%;
+    width: 70%;
+    background-image: url('../../utils/images/background/home-page/bg-4.png');
+  }
+}

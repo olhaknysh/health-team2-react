@@ -1,0 +1,116 @@
+@import '../../utils/saas//_mixins.scss';
+
+.ButtonCloseModal,
+.ButtonCloseModalMobile {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.ButtonCloseWrapper {
+  position: relative;
+  height: 40px;
+  background-color: #e4e4e4;
+}
+
+.ButtonCloseModalMobile {
+  top: 5px;
+  left: 10px;
+  padding: 5px;
+  background-color: inherit;
+}
+
+.MainSectionModal {
+  letter-spacing: 0.04em;
+  line-height: 1.21;
+}
+
+.TitleMainSection {
+  max-width: 509px;
+  text-align: center;
+  font-size: 18px;
+  margin: 40px auto;
+  padding: 0 15px;
+  color: #212121;
+
+  @include for-size(tablet) {
+    font-size: 26px;
+    margin: 64px auto 22px;
+  }
+}
+
+.PharagraphCalorieCounting {
+  max-width: 290px;
+  margin: 0 auto 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+
+  padding-bottom: 30px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #264061;
+
+  @include for-size(tablet) {
+    max-width: 330px;
+  }
+
+  & > span {
+    font-size: 48px;
+  }
+}
+
+.SectionNotReccomendProduts {
+  max-width: 290px;
+  margin: 0 auto;
+
+  @include for-size(tablet) {
+    max-width: 330px;
+  }
+}
+
+.SectionSubtitle {
+  margin-top: 0;
+  margin-bottom: 22px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.ProductsList {
+  margin-bottom: 40px;
+  padding-left: 17px;
+  color: #9b9faa;
+
+  & > li:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+
+.FooterModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ButtonRegistration {
+  width: 176px;
+  height: 44px;
+  font-weight: 700;
+  color: #fc842d;
+  border-radius: 30px;
+  border: 2px solid #fc842d;
+
+  background: #fff;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 4px 10px rgb(252 132 45 / 50%);
+    background: #fc842d;
+    color: white;
+  }
+}

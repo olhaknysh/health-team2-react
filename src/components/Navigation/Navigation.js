@@ -1,20 +1,30 @@
-import { React } from 'react';
+import { React, useRef, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import paths from '../../utils/routes';
 import s from './Navigation.module.scss';
-// import { useSelector } from 'react-redux';
-// import { authSelectors } from '../../redux/auth';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { useMedia } from 'react-use';
 
 
-export default function Navigation({isOpen}) {
+export default function Navigation({ isOpen, isAuth, onClick }) {
+  const isWide = useMedia('(max-width: 1079px)');
+  const nav = useRef(null);
 
-  // const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
-  const isAuthenticated = true;
+  useEffect(() => {
+    const navigationEl = document.getElementById('header_nav');
+
+    if (isWide) {
+      navigationEl.addEventListener('click', onClick);
+    }
+    return () => {
+      navigationEl.removeEventListener('click', onClick);
+    }
+})
+ 
   const navClassName = [];
 
-  if (isAuthenticated) {
+  if (isAuth) {
      navClassName.push(s.navIsAuthenticated);
      if (isOpen) {
         navClassName.push(s.isOpen);
@@ -24,9 +34,10 @@ export default function Navigation({isOpen}) {
   }
   
   return (
-    <nav className={classNames(navClassName.join(' '))} id="header_nav">
+    
+    <nav ref={nav} className={classNames(navClassName.join(' '))} id="header_nav">
       <ul className={s.navList}>
-        {!isAuthenticated ?  <>
+        {!isAuth ?  <>
         <li className={s.navItem}>
           <NavLink
             exact
@@ -39,7 +50,7 @@ export default function Navigation({isOpen}) {
         </li>
         <li className={s.navItem}> 
          <NavLink
-            to={paths.diary}
+            to={paths.register}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >
@@ -50,7 +61,7 @@ export default function Navigation({isOpen}) {
             <li className={s.navItem}>
           <NavLink
             exact
-            to={paths.calculator}
+            to={paths.diary}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >
@@ -59,7 +70,7 @@ export default function Navigation({isOpen}) {
         </li>
         <li className={s.navItem}> 
          <NavLink
-            to={paths.register}
+            to={paths.calculator}
             activeClassName={s.activeNavLink}
             className={s.navLink}
           >
@@ -75,5 +86,6 @@ export default function Navigation({isOpen}) {
 
 Navigation.propTypes = {
   isOpen: PropTypes.bool,
+  isAuth: PropTypes.bool,
 }
 

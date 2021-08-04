@@ -1,0 +1,76 @@
+@import '../../utils/saas/mixins';
+
+.page * {
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+}
+
+.mobileLink {
+  display: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #fc842d;
+  box-shadow: 0px 0px 10px #fc842d;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  transition: all ease-in-out 300ms;
+}
+
+.button:hover,
+.button:active {
+  background: #fd7717;
+  box-shadow: 0px 0px 20px #fd7717;
+  transition: all ease-in-out 300ms;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .mobileLink {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-top: 60px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .page {
+    margin-left: 0;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .page {
+    margin-left: 0;
+  }
+}
+
+.Overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Modal {
+  width: 100%;
+  height: 100vh;
+  animation: show-modal 0.5s forwards;
+  background-color: #fff;
+  border-radius: 3px;
+}

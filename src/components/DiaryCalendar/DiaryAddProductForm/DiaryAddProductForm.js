@@ -1,0 +1,190 @@
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import _ from 'lodash';
+import styles from './DiaryAddProductForm.module.scss';
+
+
+import icon from '../../../utils/images/diary-plus-icon.svg';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { calendarSelectors } from '../../../redux/calendar';
+
+import axios from 'axios';
+
+import { productsOperations } from '../../../redux/products';
+import { toast } from 'react-toastify';
+
+axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
+
+const DiaryAddProductForm = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [title, setTitle] = useState('');
+  const [weight, setWeight] = useState('');
+  const [query, setQuery] = useState('');
+  const [productsState, setProductsState] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [element, setElement] = useState(null);
+  const [more, setMore] = useState(true);
+
+  const dispatch = useDispatch();
+
+  const date = useSelector(calendarSelectors.currentDate);
+  // const isLoading = useSelector(calendarSelectors.isLoading);
+
+  const productSearch = useCallback(
+    _.debounce(
+      (query, currentPage) => fetchProductsData(query, currentPage),
+      300,
+    ),
+    [],
+  );
+
+  const fetchProductsData = async (value, currentPage) => {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.get(
+        `/products?search=${value}&page=${currentPage}`,
+      );
+      setProductsState(prevState => [...prevState, ...data.products]);
+    } catch (e) {
+      setMore(false); // ВИПРАВИТИ
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const updatePage = useCallback(() => {
+    setCurrentPage(prevPage => prevPage + 1);
+  }, [setCurrentPage]);
+
+  useEffect(() => {
+    if (!query) {
+      setIsOpen(false);
+      return;
+    }
+    productSearch(query, currentPage);
+  }, [query, currentPage, productSearch]);
+
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updatePage();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        root: document.getElementById('productsRoot'),
+        threshold: 1,
+      },
+    ),
+  );
+
+  useEffect(() => {
+    const currentElement = element;
+    const currentObserver = observer.current;
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [element]);
+
+
+  const handleSubmit = async (event, values) => {
+    event.preventDefault();
+
+    try {
+       dispatch(productsOperations.addProducts(values));
+      setTitle('');
+      setWeight('');
+      setIsOpen(false);
+    } catch (e) {
+       toast.error(e.message)
+    }
+  };
+
+  const handleTitleChange = e => {
+    setTitle(e.target.value);
+    setQuery(e.target.value);
+    setIsOpen(true);
+    setCurrentPage(1);
+    setProductsState([]);
+  };
+
+  const shouldRenderLoadMoreBtn = productsState.length > 0 && !isLoading;
+
+  return (
+    <React.Fragment>
+      <form
+        className={styles.form}
+        onSubmit={e => handleSubmit(e, { title, weight, date })}
+      >
+        <div>
+          <input
+            className={styles.input}
+            label="Введите название продукта"
+            placeholder="Введите название продукта *"
+            id="title"
+            name="title"
+            type="text"
+            value={title}
+            required
+            autoComplete="off"
+            onChange={e => handleTitleChange(e)}
+            onBlur={() => {
+              setTimeout(() => {
+                setIsOpen(false);
+              }, 300);
+            }}
+          />
+          {isOpen && productsState.length > 0 && (
+            <ul className={styles.productList} id="productsRoot">
+              {productsState.map(el => {
+                return (
+                  <li
+                    key={el.title.ru}
+                    onClick={() => {
+                      setTitle(el.title.ru);
+                      setIsOpen(false);
+                    }}
+                  >
+                    <span>{el.title.ru}</span>
+                  </li>
+                );
+              })}
+              {isLoading ? (
+                <h2>загружаем...</h2>
+              ) : (
+                shouldRenderLoadMoreBtn && more && <li ref={setElement}></li>
+              )}
+            </ul>
+          )}
+        </div>
+
+        <input
+          className={styles.input}
+          label="Граммы"
+          placeholder="Граммы *"
+          id="weight"
+          name="weight"
+          type="number"
+          required
+          value={weight}
+          onChange={e => setWeight(e.target.value)}
+        />
+
+        <button type="submit" className={styles.button}>
+          <img src={icon} alt="form plus icon" />
+        </button>
+      </form>
+    </React.Fragment>
+  );                   
+};
+
+export default DiaryAddProductForm;

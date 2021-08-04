@@ -1,0 +1,121 @@
+// @import '../../../utils/saas/mixins';
+
+.form {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.input {
+  min-height: 50px;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 19px;
+  padding-top: 19px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #777981;
+  outline-color: #f89853;
+  caret-color: #fc842d;
+  cursor: pointer;
+  padding: 0 5px;
+  transition: ease-in-out 400ms;
+}
+
+.input::placeholder {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.input:first-child {
+  width: 229px;
+  margin-right: 31px;
+}
+
+.input:nth-child(2) {
+  width: 95px;
+  text-align: right;
+}
+
+.input:hover,
+.input:active {
+  border-bottom: 1px solid #a8a8a8;
+  transition: ease-in-out 400ms;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background: #fc842d;
+  /* orange */
+  box-shadow: 0px 0px 10px #fc842d;
+  border-radius: 50%;
+  border: none;
+  // outline: none;
+  outline-color: #fc842d;
+  margin-left: 48px;
+  transition: ease-in-out 400ms;
+}
+
+.button:hover,
+.button:active {
+  background: #fc842d;
+  box-shadow: 0 0 16px #fc842d;
+  transition: ease-in-out 400ms;
+  cursor: pointer;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .form {
+    display: none;
+  }
+}
+
+.inputWrap {
+  position: relative;
+}
+
+.productList {
+  width: 229px;
+  list-style: none;
+  height: 250px;
+  position: absolute;
+  padding: 5px;
+  background-color: #fc842d;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: scroll;
+  z-index: 50;
+}
+
+.productList > li {
+  padding: 10px 5px;
+  color: white;
+  transition: ease 300ms;
+}
+
+.productList > li:hover {
+  background-color: white;
+  color: #fc842d;
+  transition: ease 300ms;
+}
+
+.spinner {
+  transform: rotate(360deg);
+}

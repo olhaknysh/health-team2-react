@@ -1,0 +1,108 @@
+%lightText {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: #9b9faa;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.backgroundContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  width: 500%;
+  background: rgba(0, 0, 0, 0.05);
+
+  @media screen and (max-width: 1079px) {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 500%;
+  }
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 290px;
+}
+
+.summaryBox {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.heading {
+  color: #212121;
+  margin: 0 0 20px;
+  font-family: Verdana;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+}
+
+.table,
+.dietBox {
+  width: 100%;
+}
+
+.tableBody {
+  @extend %lightText;
+}
+
+.tableBody td:nth-child(2n) {
+  text-align: right;
+}
+
+.dietParagraph {
+  margin: 0;
+  @extend %lightText;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 588px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .summaryBox {
+    width: 45%;
+    margin-bottom: 0;
+  }
+
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  .dietBox {
+    width: 45%;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .wrapper {
+    width: 232px;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .summaryBox {
+    width: 100%;
+    margin-bottom: 60px;
+  }
+
+  .dietBox {
+    width: 100%;
+  }
+}
+
+.texterror {
+  color: red;
+}

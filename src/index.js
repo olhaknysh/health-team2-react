@@ -9,15 +9,13 @@ import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-     <BrowserRouter>
+    <BrowserRouter>
       <PersistGate loading={null} persistor={persistor}>
-        <Provider store={store}> 
-    <App />
-  </Provider>
+        <Provider store={store}>
+          <App />
+        </Provider>
       </PersistGate>
-    </BrowserRouter> 
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-

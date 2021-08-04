@@ -1,0 +1,48 @@
+.container {
+  padding-top: 120px;
+}
+
+.title {
+  margin-top: 0;
+  color: #fc842d;
+  font-size: 14px;
+  margin-bottom: 60px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btnThumb {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 60px;
+}
+.regBtn {
+  margin-top: 20px;
+}
+@media screen and (min-width: 768px) {
+  .container {
+    padding-top: 271px;
+  }
+  .title {
+    text-align: start;
+  }
+  .btnThumb {
+    flex-direction: row;
+  }
+  .regBtn {
+    margin-top: 0px;
+
+    margin-left: 30px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .container {
+    padding-top: 274px;
+    padding-left: 145px;
+
+  }
+  .title {
+    margin-bottom: 70px;
+  }
+}

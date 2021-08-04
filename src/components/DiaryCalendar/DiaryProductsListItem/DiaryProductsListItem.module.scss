@@ -1,0 +1,116 @@
+@import '../../../utils/saas/mixins';
+
+.item {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 19px;
+}
+
+.product {
+  width: 240px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 19px;
+
+  // font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  color: #212121;
+  margin-right: 30px;
+}
+
+.quantity,
+.calories {
+  width: 105px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 19px;
+
+  // font-family: Verdana;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+
+  color: #212121;
+  margin-right: 30px;
+  text-align: right;
+}
+
+.delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid transparent;
+  transition: all ease-in-out 300ms;
+  cursor: pointer;
+  margin-right: 42px;
+}
+
+.delete:hover,
+.delete:active {
+  border-color: #e0e0e0;
+  transition: all ease-in-out 300ms;
+}
+
+@media (max-width: 767px) {
+  .item {
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .item:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  .product {
+    padding-bottom: 10px;
+    width: 115px;
+    margin-right: 10px;
+  }
+
+  .quantity,
+  .calories {
+    padding-bottom: 10px;
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  .calories {
+    width: 65px;
+    margin-right: 5px;
+  }
+
+  .delete {
+    margin-right: 12px;
+  }
+
+  .delete > img {
+    width: 10px;
+    height: 10px;
+  }
+
+  .cal {
+    font-size: 10px;
+  }
+
+  .quantity,
+  .calories {
+    width: 20%;
+  }
+
+  .product {
+    width: 40%;
+  }
+  .calories {
+    margin-right: 12px;
+  }
+}

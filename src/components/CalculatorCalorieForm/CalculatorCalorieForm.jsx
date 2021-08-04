@@ -218,9 +218,9 @@ function CalculatorCalorieForm() {
                   </div>
                 </div>
               </div>
-            </div>
+                      </div>
             <button className={styles.button} type="submit">
-              Похудеть
+             Похудеть
             </button>
           </Form>
         )}

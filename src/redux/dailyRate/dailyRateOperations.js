@@ -26,7 +26,6 @@ const onFetchDailyRatesAuthorised =
             .post(`/users/${userId}/calories`, values)
             .then(receivedData => {
                 dispatch(dailyRateActions.fetchDailyRateSuccess(receivedData.data));
-                // console.log('NICE', receivedData.data)
             })
             .catch(error => {
                 toast.error(error.message);

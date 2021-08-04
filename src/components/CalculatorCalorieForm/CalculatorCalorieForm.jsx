@@ -12,7 +12,8 @@ function CalculatorCalorieForm() {
   const userId = useSelector(authSelectors.getUserId);
   const userData = useSelector(authSelectors.getUserData);
   const handleSubmit = values => {
-    values.groupBlood = Number(values.groupBlood);
+      values.groupBlood = Number(values.groupBlood);
+      dispatch(dailyRateOperations.onFetchDailyRates(values));
     dispatch(dailyRateOperations.onFetchDailyRatesAuthorised(values, userId));
   };
   const DisplayingErrorMessagesSchema = Yup.object().shape({
@@ -49,7 +50,7 @@ function CalculatorCalorieForm() {
           height: userData && userData.height ? userData.height : '',
           age: userData && userData.age ? userData.age : '',
           currentWeight:
-            userData && userData.weight ? userData.currentWeight : '',
+              userData && userData.currentWeight ? userData.currentWeight : '',
           desireWeight:
             userData && userData.desireWeight ? userData.desireWeight : '',
           groupBlood:

@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styles from './AddProductMobile.module.scss';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { calendarSelectors } from '../../../redux/calendar';
-
 import axios from 'axios';
-
+import _ from 'lodash';
+import { toast } from 'react-toastify';
+import getInitialDate from '../../../utils/date';
 import { productsOperations } from '../../../redux/products';
-// import Container from '../../components/common/Container';
 
 const AddProductMobilePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,113 +15,172 @@ const AddProductMobilePage = () => {
   const [query, setQuery] = useState('');
   const [productsState, setProductsState] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [element, setElement] = useState(null);
+  const [total, setTotal] = useState(null);
   const dispatch = useDispatch();
-
+  const initialDate = getInitialDate();
   const date = useSelector(calendarSelectors.currentDate);
-  // const isLoading = useSelector(calendarSelectors.isLoading);
+
+  const productSearch = useCallback(
+    _.debounce(
+      (query, currentPage) => fetchProductsData(query, currentPage),
+      500,
+    ),
+    [],
+  );
 
   const fetchProductsData = async (value, currentPage) => {
+    setIsLoading(true);
     try {
       const { data } = await axios.get(
         `/products?search=${value}&page=${currentPage}`,
       );
-      setProductsState(prev => [...prev, ...data.products]);
-    } catch (e) {}
+      setProductsState(prevState => [...prevState, ...data.products]);
+      setTotal(data.total);
+    } catch (e) {
+      toast.error('За вашим запросом продуктов не найдено');
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  const updatePage = useCallback(() => {
+    setCurrentPage(prevPage => prevPage + 1);
+  }, [setCurrentPage]);
 
   useEffect(() => {
     if (!query) {
       setIsOpen(false);
       return;
     }
-    fetchProductsData(query, currentPage);
-  }, [query, currentPage]);
+    productSearch(query, currentPage);
+  }, [query, currentPage, productSearch]);
 
-  const updatePage = () => {
-    setCurrentPage(prevPage => prevPage + 1);
-  };
+  const observer = useRef(
+    new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            updatePage();
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        root: document.getElementById('productsRoot'),
+        threshold: 0.35,
+      },
+    ),
+  );
+
+  useEffect(() => {
+    const currentElement = element;
+    const currentObserver = observer.current;
+    if (currentElement) {
+      currentObserver.observe(currentElement);
+    }
+    return () => {
+      if (currentElement) {
+        currentObserver.unobserve(currentElement);
+      }
+    };
+  }, [element]);
+
   const handleSubmit = async (event, values) => {
     event.preventDefault();
-
     try {
-      dispatch(productsOperations.addProducts(values));
+      await dispatch(productsOperations.addProducts(values));
       setTitle('');
       setWeight('');
-      setIsOpen(false);
-      setQuery('');
-      setProductsState([]);
-    } catch (e) {}
+    } catch (e) {
+      toast.error(e.message);
+    }
   };
 
   const handleTitleChange = e => {
     setTitle(e.target.value);
     setQuery(e.target.value);
     setIsOpen(true);
+    setCurrentPage(1);
+    setProductsState([]);
   };
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={e => handleSubmit(e, { title, weight, date })}
-    >
-      <div>
-        <input
-          className={styles.input}
-          label="Введите название продукта"
-          placeholder="Введите название продукта *"
-          id="title"
-          name="title"
-          type="text"
-          value={title}
-          required
-          autoComplete="off"
-          onChange={e => handleTitleChange(e)}
-          onBlur={() => {
-            setTimeout(() => {
-              setIsOpen(false);
-            }, 300);
-          }}
-        />
-        {isOpen && (
-          <ul className={styles.productList}>
-            {productsState.map(el => {
-              return (
-                <li
-                  key={el.title.ua}
-                  onClick={() => {
-                    setTitle(el.title.ru);
-                    setIsOpen(false);
-                  }}
-                >
-                  <span>{el.title.ru}</span>
-                </li>
-              );
-            })}
-            <li>
-              <button type="button" onClick={updatePage}>
-                загрузить еще
-              </button>
-            </li>
-          </ul>
-        )}
-      </div>
+    <>
+      {date === initialDate && (
+        <form
+          className={styles.form}
+          onSubmit={e => handleSubmit(e, { title, weight, date })}
+        >
+          <div>
+            <input
+              className={styles.input}
+              label="Введите название продукта"
+              placeholder="Введите название продукта *"
+              id="title"
+              name="title"
+              type="text"
+              value={title}
+              required
+              autoComplete="off"
+              onChange={e => handleTitleChange(e)}
+              onBlur={() => {
+                setTimeout(() => {
+                  setIsOpen(false);
+                }, 300);
+              }}
+            />
+            {isOpen && productsState.length > 0 && (
+              <ul className={styles.productList} id="productsRoot">
+                {productsState.map(el => {
+                  return (
+                    <li
+                      key={el.title.ru}
+                      onClick={() => {
+                        setTitle(el.title.ru);
+                        setWeight(el.weight);
+                        setIsOpen(false);
+                      }}
+                    >
+                      <span>{el.title.ru}</span>
+                    </li>
+                  );
+                })}
+                {isLoading ? (
+                  <p className={styles.lodadingText}>загружаем...</p>
+                ) : (
+                  total > productsState.length && <li ref={setElement}></li>
+                )}
+              </ul>
+            )}
+          </div>
 
-      <input
-        className={styles.input}
-        label="Граммы"
-        placeholder="Граммы *"
-        id="weight"
-        name="weight"
-        type="number"
-        required
-        value={weight}
-        onChange={e => setWeight(e.target.value)}
-      />
+          <input
+            className={styles.input}
+            label="Граммы"
+            placeholder="Граммы *"
+            id="weight"
+            name="weight"
+            type="number"
+            min="1"
+            required
+            value={weight}
+            onChange={e => setWeight(e.target.value)}
+          />
 
-      <button type="submit" className={styles.button}>
-        Добавить
-      </button>
-    </form>
+          <button
+            type="submit"
+            className={styles.button}
+            disabled={
+              !productsState.some(product => title === product.title.ru)
+            }
+          >
+            Добавить
+          </button>
+        </form>
+      )}
+    </>
   );
 };
 

@@ -21,11 +21,10 @@ const DiaryAddProductForm = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [element, setElement] = useState(null);
-  const [more, setMore] = useState(true);
+  const [total, setTotal] = useState(null);
   const dispatch = useDispatch();
   const initialDate = getInitialDate();
   const date = useSelector(calendarSelectors.currentDate);
-  // const isLoading = useSelector(calendarSelectors.isLoading);
 
   const productSearch = useCallback(
     _.debounce(
@@ -42,9 +41,9 @@ const DiaryAddProductForm = () => {
         `/products?search=${value}&page=${currentPage}`,
       );
       setProductsState(prevState => [...prevState, ...data.products]);
+      setTotal(data.total);
     } catch (e) {
       toast.error('За вашим запросом продуктов не найдено');
-      setMore(false); // ВИПРАВИТИ
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +73,7 @@ const DiaryAddProductForm = () => {
       },
       {
         root: document.getElementById('productsRoot'),
-        threshold: 1,
+        threshold: 0.35,
       },
     ),
   );
@@ -110,8 +109,6 @@ const DiaryAddProductForm = () => {
     setCurrentPage(1);
     setProductsState([]);
   };
-
-  const shouldRenderLoadMoreBtn = productsState.length > 0 && !isLoading;
 
   return (
     <React.Fragment>
@@ -155,9 +152,9 @@ const DiaryAddProductForm = () => {
                   );
                 })}
                 {isLoading ? (
-                  <h2>загружаем...</h2>
+                  <p className={styles.lodadingText}>загружаем...</p>
                 ) : (
-                  shouldRenderLoadMoreBtn && more && <li ref={setElement}></li>
+                  total > productsState.length && <li ref={setElement}></li>
                 )}
               </ul>
             )}

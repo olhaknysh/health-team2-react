@@ -11,7 +11,7 @@ const DiaryProductsList = () => {
   const productsByDay = useSelector(productsSelectors.getProductsByDay);
   const initialDate = getInitialDate();
   const date = useSelector(calendarSelectors.currentDate);
-  // const isLoading = useSelector(productsSelectors.isLoading);
+
   return (
     <div className={styles.container}>
       {productsByDay?.length === 0 &&

@@ -100,7 +100,7 @@ input::-webkit-inner-spin-button {
 .productList {
   width: 229px;
   list-style: none;
-  height: 250px;
+  max-height: 250px;
   position: absolute;
   padding: 5px;
   background-color: #fc842d;
@@ -124,4 +124,9 @@ input::-webkit-inner-spin-button {
 
 .spinner {
   transform: rotate(360deg);
+}
+
+.lodadingText {
+  text-align: center;
+  color: white;
 }

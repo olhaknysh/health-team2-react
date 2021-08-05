@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useMedia } from 'react-use';
 import { createPortal } from 'react-dom';
-
+import { useSelector } from 'react-redux';
 import styles from './DiaryCalendar.module.scss';
 import icon from '../../utils/images/diary-plus-icon.svg';
-
-import Button from '../../components/Button';
+import Loader from '../Loader';
+import Button from '../Button';
 
 import DiaryDateСalendar from './DiaryDateСalendar';
 import DiaryAddProductForm from './DiaryAddProductForm';
@@ -13,11 +13,14 @@ import DiaryProductsList from './DiaryProductsList';
 import AddProductMobile from './AddProductMobile';
 import Container from '../common/Container';
 
+import { productsSelectors } from '../../redux/products';
+
 const modalRoot = document.getElementById('root-modal');
 
 const DailyCalendar = () => {
   const isWide = useMedia('(max-width: 768px)');
   const [showModal, setShowModal] = useState(false);
+  const isLoadingProducts = useSelector(productsSelectors.isLoading);
   const toggleModal = e => {
     if (e.target.tagName === 'BUTTON' || e.target.tagName === 'DIV') {
       setShowModal(!showModal);
@@ -28,7 +31,8 @@ const DailyCalendar = () => {
     <div className={styles.page}>
       <DiaryDateСalendar />
       <DiaryAddProductForm />
-      <DiaryProductsList />
+      {isLoadingProducts ? <Loader /> : <DiaryProductsList />}
+
       <div className={styles.mobileLink}>
         <Button type="button" className={styles.button} onClick={toggleModal}>
           <img src={icon} alt="form plus icon" />

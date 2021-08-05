@@ -15,7 +15,7 @@ axios.defaults.baseURL = 'https://slim-mom-app.herokuapp.com/api';
 const DiaryAddProductForm = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [title, setTitle] = useState('');
-    const [weight, setWeight] = useState('');
+    const [weight, setWeight] = useState(100);
     const [query, setQuery] = useState('');
     const [productsState, setProductsState] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);

@@ -31,7 +31,7 @@ const register = credentials => async (dispatch, getState) => {
 
     dispatch(authActions.registerSuccess(response.data));
   } catch (error) {
-    toast.error(error.message);
+    toast.error('Такой пользователь уже зарегистрирован');
     dispatch(authActions.registerError(error.message));
   }
 };
@@ -45,7 +45,7 @@ const login = credentials => async dispatch => {
     token.set(response.data.token);
     dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
-    toast.error(error.message);
+    toast.error('Непрвильный логин или пароль');
     dispatch(authActions.loginError(error.message));
   }
 };
@@ -82,7 +82,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
 
     dispatch(authActions.getCurrentUserSuccess(response.data));
   } catch (error) {
-    toast.error(error.message);
+    toast.error('Ошибка доступа! Выполните вход в личный кабинет');
     dispatch(authActions.getCurrentUserError(error.message));
   }
 };

@@ -6,7 +6,7 @@ import axios from 'axios';
 import _ from 'lodash';
 import { toast } from 'react-toastify';
 import getInitialDate from '../../../utils/date';
-import { productsOperations } from '../../../redux/products';
+import { productsOperations, productsSelectors } from '../../../redux/products';
 
 const AddProductMobilePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +21,8 @@ const AddProductMobilePage = () => {
   const dispatch = useDispatch();
   const initialDate = getInitialDate();
   const date = useSelector(calendarSelectors.currentDate);
+
+  const isLoadingProducts = useSelector(productsSelectors.isLoading);
 
   const productSearch = useCallback(
     _.debounce(
@@ -167,12 +169,14 @@ const AddProductMobilePage = () => {
             required
             value={weight}
             onChange={e => setWeight(e.target.value)}
+            onClick={() => setWeight('')}
           />
 
           <button
             type="submit"
             className={styles.button}
             disabled={
+              isLoadingProducts ||
               !productsState.some(product => title === product.title.ru)
             }
           >

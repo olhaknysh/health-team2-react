@@ -31,10 +31,7 @@ const totalCalories = createReducer(0, {
 const productsByDay = createReducer([], {
     [productsActions.getProductsByDaySuccess]: (_, { payload: { products } }) => products,
     [productsActions.getProductsByDayError]: () => [],
-    [productsActions.addProductsOnDaySuccess]: (state, { payload: { product } }) => [
-        ...state,
-        product,
-    ],
+    [productsActions.addProductsOnDaySuccess]: (_, { payload: { products } }) => products,
     [productsActions.deleteProductsOnDaySuccess]: (state, { payload: { productId } }) =>
         state.filter(({ _id }) => _id !== productId),
     [authActions.logoutSuccess]: () => []

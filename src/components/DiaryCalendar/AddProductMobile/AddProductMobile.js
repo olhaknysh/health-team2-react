@@ -2,11 +2,15 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import styles from './AddProductMobile.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { calendarSelectors } from '../../../redux/calendar';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import _ from 'lodash';
 import { toast } from 'react-toastify';
 import getInitialDate from '../../../utils/date';
 import { productsOperations, productsSelectors } from '../../../redux/products';
+import Button from '../../Button';
+import { ReactComponent as ArrowIcon } from '../../../utils/images/icons/arrowBack.svg';
+import paths from '../../../utils/routes';
 
 const AddProductMobilePage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -110,6 +114,14 @@ const AddProductMobilePage = () => {
 
   return (
     <>
+      <NavLink to={paths.diary} className={styles.LinkButtonCloseModalMobile}>
+        <Button
+          aria-label="button-close-modal"
+          className={styles.ButtonCloseModalMobile}
+        >
+          <ArrowIcon width="15" height="8" aria-hidden="true" />
+        </Button>
+      </NavLink>
       {date === initialDate && (
         <form
           className={styles.form}
